@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DaySoft</title>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body data-theme="dark">
+    <header>
+      <nav>
+        <a href="#">DaySoft&trade;</a>
+        <ul>
+          <li>
+            <a href="#languages">Languages</a>
+          </li>
+          <li>
+            <a href="#frameworks">Frameworks</a>
+          </li>
+          <li>
+            <a href="#tools">Tools</a>
+          </li>
+        </ul>
+      </nav>
+      <div id="theme-switcher" class="dropdown" data-open="false">
+        <button type="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-palette"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" />
+            <circle cx="17.5" cy="10.5" r=".5" />
+            <circle cx="8.5" cy="7.5" r=".5" />
+            <circle cx="6.5" cy="12.5" r=".5" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+        </button>
+        <div class="prevent-animation">
+          <button type="button" onclick="setLight()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sun"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="m4.93 4.93 1.41 1.41" />
+              <path d="m17.66 17.66 1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="m6.34 17.66-1.41 1.41" />
+              <path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+            Light
+          </button>
+          <button type="button" onclick="setDark()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-moon"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            Dark
+          </button>
+          <button type="button" onclick="setSystem()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-laptop-2"
+            >
+              <rect width="18" height="12" x="3" y="4" rx="2" ry="2" />
+              <line x1="2" x2="22" y1="20" y2="20" />
+            </svg>
+            System
+          </button>
+        </div>
+      </div>
+      <div id="mobile-nav" class="dropdown" data-open="false">
+        <button type="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-menu"
+          >
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+        </button>
+        <div class="prevent-animation">
+          <ul>
+            <li>
+              <a href="#languages">Languages</a>
+            </li>
+            <li>
+              <a href="#frameworks">Frameworks</a>
+            </li>
+            <li>
+              <a href="#tools">Tools</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="content">
+        <article>
+          <div>
+            <img src="./assets/img/profile.png" alt="profile image" />
+            <h1>Junior Frontend & Backend Developer</h1>
+            <p>I build web apps as a semi-fullstack developer and am still learning to do devops and UI/UX on my own.</p>
+          </div>
+        </article>
+
+        <article id="languages">
+          <h2>Languages I speak</h2>
+          <p>These are the programming languages I'm currently learning and using.</p>
+          <div>
+            <a href="https://html.com/" target="_blank" style="--shadow: 28 100% 64%">
+              <img src="./assets/img/html.png" alt="html icon" />
+              HTML
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" style="--shadow: 200 100% 55%">
+              <img src="./assets/img/css.png" alt="css icon" />
+              CSS
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" style="--shadow: 53 100% 55%">
+              <img src="./assets/img/js.png" alt="js icon" />
+              Javascript
+            </a>
+            <a href="https://www.typescriptlang.org/" target="_blank" style="--shadow: 204 69% 42%">
+              <img src="./assets/img/ts.png" alt="ts icon" />
+              Typescript
+            </a>
+            <a href="https://www.php.net/docs.php" target="_blank" style="--shadow: 236 13% 55%">
+              <img src="./assets/img/php.png" alt="php icon" />
+              PHP
+            </a>
+            <a href="https://docs.oracle.com/en/java/" target="_blank" style="--shadow: 202 59% 35%">
+              <img src="./assets/img/java.png" alt="java icon" />
+              Java
+            </a>
+          </div>
+        </article>
+
+        <article id="frameworks">
+          <h2>Frameworks I work with</h2>
+          <p>These are the frameworks that help scaffold my projects.</p>
+          <div>
+            <a href="https://react.dev/" target="_blank" style="--shadow: 184 100% 50%">
+              <img src="./assets/img/react.png" alt="react icon" />
+              ReactJS
+            </a>
+            <a href="https://expressjs.com/" target="_blank" style="--shadow: 360 5% 23%">
+              <img src="./assets/img/express.png" alt="express icon" />
+              ExpressJS
+            </a>
+            <a href="https://tailwindcss.com/" target="_blank" style="--shadow: 189 100% 45%">
+              <img src="./assets/img/tailwind.png" alt="tailwind icon" />
+              TailwindCSS
+            </a>
+            <a href="https://nextjs.org/" target="_blank" style="--shadow: 0 0% 0%">
+              <img src="./assets/img/next.png" alt="next icon" />
+              NextJS
+            </a>
+            <a href="https://www.codeigniter.com/" target="_blank" style="--shadow: 14 100% 53%">
+              <img src="./assets/img/ci.png" alt="ci icon" />
+              CodeIgniter
+            </a>
+          </div>
+        </article>
+
+        <article id="tools">
+          <h2>Tools I use</h2>
+          <p>These are the tools that help me develop and make new apps.</p>
+          <div>
+            <a href="https://www.mysql.com/" target="_blank" style="--shadow: 196 64% 27%">
+              <img src="./assets/img/mysql.png" alt="mysql icon" />
+              MySQL
+            </a>
+            <a href="https://www.mongodb.com/" target="_blank" style="--shadow: 135 75% 50%">
+              <img src="./assets/img/mongodb.png" alt="mongodb icon" />
+              MongoDB
+            </a>
+            <a href="https://vitejs.dev/" target="_blank" style="--shadow: 280 75% 50%">
+              <img src="./assets/img/vite.png" alt="vite icon" />
+              ViteJS
+            </a>
+            <a href="https://nodejs.org/en" target="_blank" style="--shadow: 142 86% 29%">
+              <img src="./assets/img/nodejs.png" alt="nodejs icon" />
+              NodeJS
+            </a>
+            <a href="https://code.visualstudio.com/" target="_blank" style="--shadow: 208 100% 63%">
+              <img src="./assets/img/vscode.png" alt="vscode icon" />
+              Visual Studio Code
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <aside data-show="false">
+        <article>
+          <button type="button" class="sidebar-toggle">About Me!</button>
+          <header>
+            <h3>Personal Profile</h3>
+            <figure>
+              <img src="./assets/img/myphoto.jpg" />
+              <figcaption>Dimas Adnan Yusuf Widyanto</figcaption>
+            </figure>
+          </header>
+          <section>
+            <h3>Other Informations</h3>
+            <table>
+              <tr>
+                <th>Born</th>
+                <td>Jakarta, January 28<sup>th</sup>, 2003</td>
+              </tr>
+              <tr>
+                <th>Siblings</th>
+                <td>2 Sisters</td>
+              </tr>
+              <tr>
+                <th>Last Education</th>
+                <td>13 Senior Highschool of Jakarta</td>
+              </tr>
+              <tr>
+                <th>Pursuing Education</th>
+                <td>Informatics Major of Jenderal Soedirman University</td>
+              </tr>
+              <tr>
+                <th>Phone Number</th>
+                <td>+62 896 1234 5678</td>
+              </tr>
+            </table>
+          </section>
+        </article>
+      </aside>
+    </main>
+
+    <footer>
+      <h3>Day-Soft&trade;</h3>
+      <p>Always Aiming for Perfection.</p>
+      <p>Learning Web Programming Fundamentals &copy; 2023, Dicoding Academy</p>
+      <p>
+        PNGs from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.flaticon.com/authors/freepik">Freepik</a>, and
+        <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel Perfect</a>
+        <br />
+        SVGs by <a href="https://lucide.dev/">Lucide Icon Community</a>.
+      </p>
+    </footer>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
