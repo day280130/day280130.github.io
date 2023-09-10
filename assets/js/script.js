@@ -68,3 +68,120 @@ mql.onchange = () => {
     body.setAttribute("data-theme", "light");
   }
 };
+
+// Render Cards
+const renderCards = (card, parent) =>
+  (parent.innerHTML += `
+    <a href="${card.link}" target="_blank" style="--shadow: ${card.shadow}">
+      <img src="./assets/img/${card.id}.png" alt="java icon" />
+      ${card.name}
+    </a>
+  `);
+const languages = [
+  {
+    id: "html",
+    name: "HTML",
+    link: "https://html.com/",
+    shadow: "28 100% 64%",
+  },
+  {
+    id: "css",
+    name: "CSS",
+    link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    shadow: "200 100% 55%",
+  },
+  {
+    id: "js",
+    name: "Javascript",
+    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    shadow: "53 100% 55%",
+  },
+  {
+    id: "ts",
+    name: "Typescript",
+    link: "https://www.typescriptlang.org/",
+    shadow: "204 69% 42%",
+  },
+  {
+    id: "php",
+    name: "PHP",
+    link: "https://www.php.net/docs.php",
+    shadow: "236 13% 55%",
+  },
+  {
+    id: "java",
+    name: "Java",
+    link: "https://docs.oracle.com/en/java/",
+    shadow: "202 59% 35%",
+  },
+];
+const languagesDiv = document.getElementById("languages-container");
+languages.forEach((language) => renderCards(language, languagesDiv));
+const frameworks = [
+  {
+    id: "react",
+    name: "ReactJS",
+    link: "https://react.dev/",
+    shadow: "184 100% 50%",
+  },
+  {
+    id: "express",
+    name: "ExpressJS",
+    link: "https://expressjs.com/",
+    shadow: "360 5% 23%",
+  },
+  {
+    id: "tailwind",
+    name: "TailwindCSS",
+    link: "https://tailwindcss.com/",
+    shadow: "189 100% 45%",
+  },
+  {
+    id: "next",
+    name: "NextJS",
+    link: "https://nextjs.org/",
+    shadow: "0 0% 0%",
+  },
+  {
+    id: "ci",
+    name: "CodeIgniter",
+    link: "https://www.codeigniter.com/",
+    shadow: "14 100% 53%",
+  },
+];
+const frameworksDiv = document.getElementById("frameworks-container");
+frameworks.forEach((framework) => renderCards(framework, frameworksDiv));
+const tools = [
+  {
+    id: "mysql",
+    name: "MySQL",
+    link: "https://www.mysql.com/",
+    shadow: "196 64% 27%",
+  },
+  {
+    id: "mongodb",
+    name: "MongoDB",
+    link: "https://www.mongodb.com/",
+    shadow: "135 75% 50%",
+  },
+  {
+    id: "vite",
+    name: "ViteJS",
+    link: "https://vitejs.dev/",
+    shadow: "280 75% 50%",
+  },
+  {
+    id: "nodejs",
+    name: "NodeJS",
+    link: "https://nodejs.org/en",
+    shadow: "142 86% 29%",
+  },
+  {
+    id: "vscode",
+    name: "Visual Studio Code",
+    link: "https://code.visualstudio.com/",
+    shadow: "208 100% 63%",
+  },
+];
+const toolsDiv = document.getElementById("tools-container");
+tools.forEach((tool) => renderCards(tool, toolsDiv));
