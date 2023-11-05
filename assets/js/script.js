@@ -1,3 +1,12 @@
+// Image URL
+const imgUrl = "./assets/img";
+
+// Applying imgUrl
+const imgElements = document.querySelectorAll("img");
+imgElements.forEach((imgElement) => {
+  imgElement.src = `${imgUrl}/${imgElement.dataset.imgName}`;
+});
+
 // Sidebar
 const button = document.querySelector(".sidebar-toggle");
 const asideElement = document.querySelector("aside");
@@ -73,7 +82,7 @@ mql.onchange = () => {
 const renderCards = (card, parent) =>
   (parent.innerHTML += `
     <a href="${card.link}" target="_blank" style="--shadow: ${card.shadow}">
-      <img src="./assets/img/${card.id}.png" alt="java icon" />
+      <img src="${imgUrl}/${card.id}.png" alt="java icon" />
       ${card.name}
     </a>
   `);
