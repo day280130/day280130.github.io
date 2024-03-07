@@ -82,7 +82,7 @@ mql.onchange = () => {
 const renderCards = (card, parent) =>
   (parent.innerHTML += `
     <a href="${card.link}" target="_blank" style="--shadow: ${card.shadow}">
-      <img src="${imgUrl}/${card.id}.png" alt="java icon" />
+      <img src="${imgUrl}/${card.id}.png" alt="${card.id} icon" />
       ${card.name}
     </a>
   `);
