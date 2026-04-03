@@ -3,6 +3,7 @@
   --accent: 210 40% 96.1%;
   --secondary: 210 40% 92%;
   --foreground: 222.2 84% 4.9%;
+  --aside-width: min(450px, 80vw);
 }
 
 [data-theme="dark"] {
@@ -16,6 +17,10 @@
   html {
     scroll-behavior: smooth;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 * {
@@ -79,7 +84,9 @@ header > nav > ul {
 .dropdown li {
   padding: 0.5rem;
   border-radius: 5px;
-  transition: color 0.5s ease-in-out, transform 0.1s ease-in-out;
+  transition:
+    color 0.5s ease-in-out,
+    transform 0.1s ease-in-out;
 }
 
 .dropdown button:hover,
@@ -216,7 +223,9 @@ header > nav > ul {
   border-radius: 10px;
   font-weight: 500;
   font-size: x-large;
-  transition: transform 0.1s, box-shadow 0.1s ease-in-out;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s ease-in-out;
 }
 
 #content > article > h2 ~ div > a:hover {
@@ -267,40 +276,61 @@ article p {
 
 article > *,
 footer > * {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-aside > article {
+aside {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -400px;
-  padding: 2rem;
-  height: 100vh;
-  width: 400px;
+  right: calc(var(--aside-width) * -1);
   background-color: hsl(var(--background));
   border-left: 0.25rem hsl(var(--secondary)) solid;
-  z-index: 99;
+  z-index: 90;
   transition: transform 0.5s ease-in-out;
 }
 
-aside[data-show="true"] > article {
-  transform: translate(-400px, 0);
+aside[data-show="true"] {
+  transform: translate(calc(var(--aside-width) * -1), 0);
 }
 
-@media screen and (max-width: 500px) {
-  aside > article {
-    right: -80vw;
-    width: 80vw;
-  }
-  aside[data-show="true"] > article {
-    transform: translate(-80vw, 0);
-  }
+aside .sidebar-toggle {
+  position: absolute;
+  left: -4rem;
+  top: 50%;
+  bottom: 50%;
+  height: 2rem;
+  padding-inline: 0.5rem;
+  border-radius: 5px 5px 0 0;
+  background-color: hsl(var(--secondary));
+  z-index: 99;
+  transform: rotate(270deg) scale(1, 1);
+  transition: transform 0.3s ease-in-out;
+}
+
+aside .sidebar-toggle:hover {
+  transform: rotate(270deg) scale(1.1, 1.1);
+}
+
+aside article {
+  padding: 1rem;
+  padding-top: 2rem;
+  height: 100vh;
+  width: var(--aside-width);
+  overflow-y: auto;
 }
 
 aside header,
 aside h3 {
   text-align: center;
+}
+
+aside header {
+  background-color: hsl(var(--background) / 0.5);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+  z-index: 10;
 }
 
 aside header > * {
@@ -323,48 +353,57 @@ aside img {
 aside section {
   position: relative;
   max-height: 50vh;
-  overflow: auto;
+  background-color: hsl(var(--accent));
+  border-radius: 10px;
+  padding: 0.5rem;
 }
 
 aside section > h3 {
   position: sticky;
   top: 0;
-  background-color: hsl(var(--background));
   font-size: large;
   font-weight: 600;
-  line-height: 1.75rem;
+  line-height: 2rem;
+  border-bottom: 0.125rem hsl(var(--secondary)) solid;
   margin-bottom: 0.25rem;
 }
 
-aside tr:not(:last-child) {
-  border-bottom: 0.125rem hsl(var(--secondary)) solid;
+aside table {
+  width: 100%;
 }
 
 aside th {
   text-align: left;
-  border-right: 0.125rem hsl(var(--secondary)) solid;
 }
 
 aside th,
 aside td {
-  padding: 0.25rem;
+  vertical-align: top;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
-aside .sidebar-toggle {
-  position: absolute;
-  left: -4rem;
-  top: 50%;
-  bottom: 50%;
-  height: 2rem;
-  padding-inline: 0.5rem;
-  border-radius: 5px 5px 0 0;
-  background-color: hsl(var(--secondary));
-  transform: rotate(270deg) scale(1, 1);
-  transition: transform 0.3s ease-in-out;
+aside td:last-child {
+  text-align: right;
 }
 
-aside .sidebar-toggle:hover {
-  transform: rotate(270deg) scale(1.1, 1.1);
+aside td h4 {
+  font-weight: bold;
+}
+
+aside td p {
+  font-size: smaller;
+  line-height: normal;
+}
+
+aside td a:hover {
+  text-decoration: underline;
+}
+
+aside td a:active {
+  color: hsl(var(--foreground) / 0.5);
 }
 
 @media screen and (max-width: 500px) {
