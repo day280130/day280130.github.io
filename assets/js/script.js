@@ -19,13 +19,15 @@ button.addEventListener("click", () => {
 // Dropdown
 const dropdowns = document.querySelectorAll(".dropdown");
 dropdowns.forEach((e) => {
-  const button = e.querySelector("button");
-  button.addEventListener("click", () => {
+  // attach dropdown state handler
+  const dropdownTrigger = e.querySelector(".dropdown-trigger");
+  dropdownTrigger.addEventListener("click", () => {
     const currentState = e.dataset.open;
     const nextState = currentState === "true" ? false : true;
     e.setAttribute("data-open", nextState);
   });
-  const container = e.querySelector("div");
+  // remove prevent-animation helper after page loaded
+  const container = e.querySelector(".dropdown-container");
   document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       container.classList.remove("prevent-animation");
@@ -38,10 +40,13 @@ dropdowns.forEach((e) => {
 });
 
 // Theme Switcher
+// get initial browser theme setting
 const mql = window.matchMedia("(prefers-color-scheme: dark)");
-const body = document.querySelector("body");
-const initialTheme = localStorage.getItem("theme");
 const initialSystemTheme = mql.matches ? "dark" : "light";
+// get theme state if already saved before
+const initialTheme = localStorage.getItem("theme");
+// set initial theme state
+const body = document.querySelector("body");
 if (initialTheme === "dark") {
   body.setAttribute("data-theme", "dark");
 } else if (initialTheme === "light") {
@@ -53,15 +58,16 @@ if (initialTheme === "dark") {
     body.setAttribute("data-theme", "light");
   }
 }
-const setDark = () => {
+// theme state dispatchers
+const setThemeDark = () => {
   localStorage.setItem("theme", "dark");
   body.setAttribute("data-theme", "dark");
 };
-const setLight = () => {
+const setThemeLight = () => {
   localStorage.setItem("theme", "light");
   body.setAttribute("data-theme", "light");
 };
-const setSystem = () => {
+const setThemeSystem = () => {
   localStorage.setItem("theme", "system");
   if (mql.matches) {
     body.setAttribute("data-theme", "dark");
@@ -69,7 +75,9 @@ const setSystem = () => {
     body.setAttribute("data-theme", "light");
   }
 };
+// handle theme state switching via browser setting
 mql.onchange = () => {
+  // ignore if page theme not following browser/os theme
   if (localStorage.getItem("theme") !== "system") return;
   if (mql.matches) {
     body.setAttribute("data-theme", "dark");

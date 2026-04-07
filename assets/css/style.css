@@ -1,9 +1,10 @@
+/* -------------- theming styles -------------- */
+
 :root {
   --background: 0 0% 100%;
   --accent: 210 40% 96.1%;
   --secondary: 210 40% 92%;
   --foreground: 222.2 84% 4.9%;
-  --aside-width: min(450px, 80vw);
 }
 
 [data-theme="dark"] {
@@ -12,6 +13,8 @@
   --secondary: 217.2 32.6% 17.5%;
   --foreground: 210 40% 98%;
 }
+
+/* -------------- root styles -------------- */
 
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -23,9 +26,10 @@
   display: none;
 }
 
-* {
+:root {
   font-size: 1rem;
   line-height: 1.5rem;
+  scrollbar-width: none;
 }
 
 body {
@@ -35,6 +39,18 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  color: hsl(var(--foreground) / 0.5);
+}
+
+/* -------------- header styles -------------- */
+
+/* header root */
 
 body > header {
   background-color: hsl(var(--background) / 0.5);
@@ -57,6 +73,8 @@ body > header {
   }
 }
 
+/* header nav root */
+
 header > nav {
   display: flex;
   flex-grow: 1;
@@ -70,47 +88,39 @@ header > nav > a {
   line-height: 1.75rem;
 }
 
+/* header nav container */
+
 header > nav > ul {
   display: flex;
   gap: 1rem;
   font-weight: 600;
 }
 
+.mobile-nav {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  header > nav > ul {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+/* -------------- dropdown styles -------------- */
+
+/* dropdown root */
+
 .dropdown {
   position: relative;
 }
 
-.dropdown button,
-.dropdown li {
-  padding: 0.5rem;
-  border-radius: 5px;
-  transition:
-    color 0.5s ease-in-out,
-    transform 0.1s ease-in-out;
-}
+/* dropdown container */
 
-.dropdown button:hover,
-.dropdown li:hover {
-  background-color: hsl(var(--foreground) / 0.1);
-}
-
-.dropdown button:active,
-.dropdown li:active {
-  background-color: hsl(var(--background));
-  transform: scale(0.9, 0.9);
-}
-
-.dropdown > div > button {
-  display: flex;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.dropdown a {
-  display: block;
-}
-
-.dropdown > div {
+.dropdown-container {
   position: absolute;
   top: 100%;
   right: 0;
@@ -123,23 +133,22 @@ header > nav > ul {
   transform-origin: top center;
 }
 
-.dropdown[data-open="true"] > div {
+.dropdown[data-open="true"] > .dropdown-container {
   animation: growDown 0.3s ease-in-out forwards;
   transform-origin: top center;
 }
 
-.dropdown > div.prevent-animation {
-  height: 0;
-  animation-duration: 0s;
-}
+/* dropdown animation */
 
 @keyframes growDown {
   0% {
     transform: scaleY(0);
   }
+
   80% {
     transform: scaleY(1.1);
   }
+
   100% {
     transform: scaleY(1);
   }
@@ -149,27 +158,50 @@ header > nav > ul {
   0% {
     transform: scaleY(1);
   }
+
   20% {
     transform: scaleY(1.1);
   }
+
   100% {
     transform: scaleY(0);
   }
 }
 
-#mobile-nav {
-  display: none;
+/* helper to prevent shrinkUp animation played when page just loaded */
+.dropdown > .prevent-animation {
+  height: 0;
+  animation-duration: 0s;
 }
 
-@media screen and (max-width: 500px) {
-  header > nav > ul {
-    display: none;
-  }
+/* dropdown trigger & item */
 
-  #mobile-nav {
-    display: block;
-  }
+.dropdown-trigger,
+.dropdown-item {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition:
+    color 0.5s ease-in-out,
+    transform 0.1s ease-in-out;
 }
+
+.dropdown-trigger:hover,
+.dropdown-item:hover {
+  background-color: hsl(var(--foreground) / 0.1);
+}
+
+.dropdown-trigger:active,
+.dropdown-item:active {
+  background-color: hsl(var(--background));
+  transform: scale(0.9, 0.9);
+}
+
+/* -------------- content styles -------------- */
+
+/* content root */
 
 #content > article {
   min-height: 100vh;
@@ -182,6 +214,8 @@ header > nav > ul {
     padding-inline: 0.17rem;
   }
 }
+
+/* content first screen */
 
 #content > article:first-child {
   min-height: 70vh;
@@ -204,12 +238,16 @@ header > nav > ul {
   border-radius: 999px;
 }
 
+/* content list screen root */
+
 #content > article > h2 ~ div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
 }
+
+/* content list screen item */
 
 #content > article > h2 ~ div > a {
   display: flex;
@@ -242,10 +280,16 @@ header > nav > ul {
   width: 90%;
 }
 
+/* content list screen mobile configuration */
+
 @media screen and (max-width: 500px) {
+  /* root */
+
   #content > article > h2 ~ div {
     padding-inline: 1rem;
   }
+
+  /* item */
 
   #content > article > h2 ~ div > a {
     flex-direction: row;
@@ -260,6 +304,8 @@ header > nav > ul {
     width: 30%;
   }
 }
+
+/* -------------- title styles -------------- */
 
 article h1,
 article h2,
@@ -279,7 +325,12 @@ footer > * {
   margin-bottom: 1rem;
 }
 
+/* -------------- aside styles -------------- */
+
+/* aside root */
+
 aside {
+  --aside-width: min(450px, 80vw);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -293,6 +344,8 @@ aside {
 aside[data-show="true"] {
   transform: translate(calc(var(--aside-width) * -1), 0);
 }
+
+/* aside toggle button */
 
 aside .sidebar-toggle {
   position: absolute;
@@ -308,15 +361,26 @@ aside .sidebar-toggle {
   transition: transform 0.3s ease-in-out;
 }
 
+@media screen and (max-width: 500px) {
+  aside[data-show="true"] .sidebar-toggle {
+    transform: rotate(270deg) scale(1, 1) translate(0, 2rem);
+    border-radius: 0 0 5px 5px;
+  }
+}
+
 aside .sidebar-toggle:hover {
   transform: rotate(270deg) scale(1.1, 1.1);
 }
+
+/* aside content root */
 
 aside article {
   height: 100vh;
   width: var(--aside-width);
   overflow-y: auto;
 }
+
+/* aside content header */
 
 aside header,
 aside h3 {
@@ -349,6 +413,8 @@ aside header img {
   border-radius: 10px;
 }
 
+/* aside content body */
+
 aside .aside-content {
   padding: 1rem;
   padding-top: 0;
@@ -357,6 +423,8 @@ aside .aside-content {
 aside .aside-content > *:not(:last-child) {
   margin-bottom: 1rem;
 }
+
+/* aside content item */
 
 aside section {
   position: relative;
@@ -374,6 +442,8 @@ aside section > h3 {
   border-bottom: 0.125rem hsl(var(--secondary)) solid;
   margin-bottom: 0.25rem;
 }
+
+/* aside table */
 
 aside table {
   width: 100%;
@@ -406,20 +476,7 @@ aside td p {
   line-height: normal;
 }
 
-aside td a:hover {
-  text-decoration: underline;
-}
-
-aside td a:active {
-  color: hsl(var(--foreground) / 0.5);
-}
-
-@media screen and (max-width: 500px) {
-  aside[data-show="true"] .sidebar-toggle {
-    transform: rotate(270deg) scale(1, 1) translate(0, 2rem);
-    border-radius: 0 0 5px 5px;
-  }
-}
+/* -------------- footer styles -------------- */
 
 footer {
   background-color: hsl(var(--accent));

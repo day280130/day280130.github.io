@@ -16,7 +16,7 @@
     <header>
       <nav>
         <a href="#">DaySoft&trade;</a>
-        <ul>
+        <ul class="desktop-nav">
           <li>
             <a href="#languages">Languages</a>
           </li>
@@ -27,9 +27,40 @@
             <a href="#tools">Tools</a>
           </li>
         </ul>
+        <div class="mobile-nav dropdown" data-open="false">
+          <button type="button" class="dropdown-trigger">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-menu"
+            >
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+          </button>
+          <ul class="dropdown-container prevent-animation">
+            <li class="dropdown-item">
+              <a href="#languages">Languages</a>
+            </li>
+            <li class="dropdown-item">
+              <a href="#frameworks">Frameworks</a>
+            </li>
+            <li class="dropdown-item">
+              <a href="#tools">Tools</a>
+            </li>
+          </ul>
+        </div>
       </nav>
-      <div id="theme-switcher" class="dropdown" data-open="false">
-        <button type="button">
+      <div class="theme-switcher dropdown" data-open="false">
+        <button type="button" class="dropdown-trigger">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -51,8 +82,8 @@
             />
           </svg>
         </button>
-        <div class="prevent-animation">
-          <button type="button" onclick="setLight()">
+        <div class="dropdown-container prevent-animation">
+          <button type="button" class="dropdown-item" onclick="setThemeLight()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -77,7 +108,7 @@
             </svg>
             Light
           </button>
-          <button type="button" onclick="setDark()">
+          <button type="button" class="dropdown-item" onclick="setThemeDark()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -94,7 +125,7 @@
             </svg>
             Dark
           </button>
-          <button type="button" onclick="setSystem()">
+          <button type="button" class="dropdown-item" onclick="setThemeSystem()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -112,39 +143,6 @@
             </svg>
             System
           </button>
-        </div>
-      </div>
-      <div id="mobile-nav" class="dropdown" data-open="false">
-        <button type="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-menu"
-          >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>
-        </button>
-        <div class="prevent-animation">
-          <ul>
-            <li>
-              <a href="#languages">Languages</a>
-            </li>
-            <li>
-              <a href="#frameworks">Frameworks</a>
-            </li>
-            <li>
-              <a href="#tools">Tools</a>
-            </li>
-          </ul>
         </div>
       </div>
     </header>
