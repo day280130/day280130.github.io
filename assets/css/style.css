@@ -131,13 +131,7 @@ header > nav {
   max-width: max-content;
   background-color: hsl(var(--accent));
   border-radius: 5px;
-  animation: shrinkUp 0.3s ease-in-out forwards;
-  transform-origin: top center;
-}
-
-.dropdown[data-open="true"] > .dropdown-container {
-  animation: growDown 0.3s ease-in-out forwards;
-  transform-origin: top center;
+  transform: scaleY(0);
 }
 
 /* dropdown animation */
@@ -156,6 +150,11 @@ header > nav {
   }
 }
 
+.dropdown[data-open="true"] > .dropdown-container {
+  animation: growDown 0.3s ease-in-out forwards;
+  transform-origin: top center;
+}
+
 @keyframes shrinkUp {
   0% {
     transform: scaleY(1);
@@ -170,10 +169,11 @@ header > nav {
   }
 }
 
-/* helper to prevent shrinkUp animation played when page just loaded */
-.dropdown > .prevent-animation {
-  height: 0;
-  animation-duration: 0s;
+/* made sure shrinkUp animation not played when page just loaded */
+/* prevent-animation class will be removed with js after dropdown opens for the first time */
+.dropdown-container:not(.prevent-animation) {
+  animation: shrinkUp 0.3s ease-in-out forwards;
+  transform-origin: top center;
 }
 
 /* dropdown trigger & item */

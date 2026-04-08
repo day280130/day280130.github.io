@@ -12,17 +12,15 @@ const dropdowns = document.querySelectorAll(".dropdown");
 dropdowns.forEach((dropdown) => {
   // attach dropdown state handler
   const dropdownTrigger = dropdown.querySelector(".dropdown-trigger");
+  const dropdownContainer = dropdown.querySelector(".dropdown-container");
   dropdownTrigger.addEventListener("click", () => {
     const currentState = dropdown.dataset.open;
     const nextState = currentState === "true" ? false : true;
     dropdown.setAttribute("data-open", nextState);
-  });
-  // remove prevent-animation helper after page loaded
-  const dropdownContainer = dropdown.querySelector(".dropdown-container");
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
+    // remove prevent-animation helper after dropdown opened for the first time
+    if (dropdownContainer.classList.contains("prevent-animation")) {
       dropdownContainer.classList.remove("prevent-animation");
-    }, 10);
+    }
   });
   // handle clicking outside dropdown container
   window.addEventListener("click", (mv) => {
