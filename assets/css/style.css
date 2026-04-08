@@ -82,7 +82,9 @@ header > nav {
   align-items: center;
 }
 
-header > nav > a {
+/* header nav root link */
+
+.root-link {
   font-weight: 700;
   font-size: x-large;
   line-height: 1.75rem;
@@ -90,7 +92,7 @@ header > nav > a {
 
 /* header nav container */
 
-header > nav > ul {
+.desktop-nav {
   display: flex;
   gap: 1rem;
   font-weight: 600;
@@ -101,7 +103,7 @@ header > nav > ul {
 }
 
 @media screen and (max-width: 500px) {
-  header > nav > ul {
+  .desktop-nav {
     display: none;
   }
 
@@ -199,38 +201,58 @@ header > nav > ul {
   transform: scale(0.9, 0.9);
 }
 
-/* -------------- content styles -------------- */
+/* -------------- main styles -------------- */
 
-/* content root */
+/* main typography */
 
-#content > article {
+main h1,
+main h2 {
+  font-size: xx-large;
+  line-height: 2rem;
+  font-weight: bold;
+}
+
+main p {
+  font-size: large;
+  line-height: 1.75rem;
+}
+
+/* main article root */
+
+main > article {
   min-height: 100vh;
   padding-top: 20vh;
   text-align: center;
 }
 
 @media screen and (max-width: 500px) {
-  #content > article {
+  main > article {
     padding-inline: 0.17rem;
   }
 }
 
-/* content first screen */
+main > article > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
 
-#content > article:first-child {
-  min-height: 70vh;
-  margin-top: 30vh;
-  padding-top: 0;
+/* main hero article */
+
+main > article:first-child {
+  position: relative;
+  padding-top: 10vh;
+}
+
+main > article:first-child > .backdrop {
+  position: absolute;
+  z-index: -1;
+  top: 20vh;
+  width: 100%;
+  height: 50vh;
   background-image: linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--background)));
   border-radius: 25px 25px 0 0;
 }
 
-#content > article:first-child div {
-  position: relative;
-  top: -20vh;
-}
-
-#content > article:first-child img {
+main > article:first-child > img {
   max-height: 40vh;
   margin-inline: auto;
   background-color: hsl(var(--accent));
@@ -238,18 +260,24 @@ header > nav > ul {
   border-radius: 999px;
 }
 
-/* content list screen root */
+/* main article card container */
 
-#content > article > h2 ~ div {
+main .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
 }
 
-/* content list screen item */
+@media screen and (max-width: 500px) {
+  main .card-container {
+    padding-inline: 1rem;
+  }
+}
 
-#content > article > h2 ~ div > a {
+/* main article card item */
+
+main .card-container > .card-item {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -266,32 +294,8 @@ header > nav > ul {
     box-shadow 0.1s ease-in-out;
 }
 
-#content > article > h2 ~ div > a:hover {
-  transform: translateY(-3px) scale(1.02, 1.02);
-  transform-origin: bottom center;
-  box-shadow: 0 3px 20px 10px hsl(var(--shadow) / 0.5);
-}
-
-#content > article > h2 ~ div > a:active {
-  transform: translateX(0) scale(1, 1);
-}
-
-#content > article > h2 ~ div > a > img {
-  width: 90%;
-}
-
-/* content list screen mobile configuration */
-
 @media screen and (max-width: 500px) {
-  /* root */
-
-  #content > article > h2 ~ div {
-    padding-inline: 1rem;
-  }
-
-  /* item */
-
-  #content > article > h2 ~ div > a {
+  main .card-container > .card-item {
     flex-direction: row;
     min-width: 100%;
     max-width: 300px;
@@ -299,30 +303,26 @@ header > nav > ul {
     line-height: 2rem;
     text-align: left;
   }
+}
 
-  #content > article > h2 ~ div > a > img {
+main .card-container > .card-item:hover {
+  transform: translateY(-3px) scale(1.02, 1.02);
+  transform-origin: bottom center;
+  box-shadow: 0 3px 20px 10px hsl(var(--shadow) / 0.5);
+}
+
+main .card-container > .card-item:active {
+  transform: translateX(0) scale(1, 1);
+}
+
+main .card-container > .card-item > img {
+  width: 90%;
+}
+
+@media screen and (max-width: 500px) {
+  main .card-container > .card-item > img {
     width: 30%;
   }
-}
-
-/* -------------- title styles -------------- */
-
-article h1,
-article h2,
-footer h3 {
-  font-size: xx-large;
-  line-height: 2rem;
-  font-weight: bold;
-}
-
-article p {
-  font-size: large;
-  line-height: 1.75rem;
-}
-
-#content article > *,
-footer > * {
-  margin-bottom: 1rem;
 }
 
 /* -------------- aside styles -------------- */
@@ -372,7 +372,7 @@ aside .sidebar-toggle:hover {
   transform: rotate(270deg) scale(1.1, 1.1);
 }
 
-/* aside content root */
+/* aside article root */
 
 aside article {
   height: 100vh;
@@ -380,21 +380,15 @@ aside article {
   overflow-y: auto;
 }
 
-/* aside content header */
-
-aside header,
-aside h3 {
-  text-align: center;
-}
+/* aside article header */
 
 aside header {
   background-color: hsl(var(--background) / 0.5);
-  position: sticky;
-  top: 0;
   padding: 1rem;
   padding-top: 2.25rem;
   backdrop-filter: blur(8px);
   z-index: 10;
+  text-align: center;
 }
 
 aside header > *:not(:last-child) {
@@ -413,7 +407,7 @@ aside header img {
   border-radius: 10px;
 }
 
-/* aside content body */
+/* aside article content root */
 
 aside .aside-content {
   padding: 1rem;
@@ -424,18 +418,16 @@ aside .aside-content > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-/* aside content item */
+/* aside article content item */
 
 aside section {
-  position: relative;
   background-color: hsl(var(--accent));
   border-radius: 10px;
   padding: 0.5rem;
 }
 
 aside section > h3 {
-  position: sticky;
-  top: 0;
+  text-align: center;
   font-size: large;
   font-weight: 600;
   line-height: 2rem;
@@ -456,10 +448,7 @@ aside th {
 aside th,
 aside td {
   vertical-align: top;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
   word-break: break-all;
 }
 
@@ -486,10 +475,16 @@ footer {
   padding-bottom: 1rem;
 }
 
-footer > p:first-of-type {
-  font-size: larger;
+footer > h3 {
+  font-size: xx-large;
+  line-height: 2rem;
+  font-weight: bold;
 }
 
-footer a:hover {
-  text-decoration: underline;
+footer > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+footer > p:first-of-type {
+  font-size: larger;
 }

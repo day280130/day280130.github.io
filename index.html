@@ -15,7 +15,7 @@
   <body data-theme="dark">
     <header>
       <nav>
-        <a href="#">DaySoft&trade;</a>
+        <a href="#" class="root-link">DaySoft&trade;</a>
         <ul class="desktop-nav">
           <li>
             <a href="#languages">Languages</a>
@@ -148,132 +148,196 @@
     </header>
 
     <main>
-      <div id="content">
-        <article>
-          <div>
-            <img class="img" data-img-name="profile.png" alt="profile image" />
-            <h1>Junior Frontend & Backend Developer</h1>
-            <p>I build web apps as a semi-fullstack developer and am still learning to do devops and UI/UX on my own.</p>
-          </div>
-        </article>
+      <article>
+        <div class="backdrop"></div>
+        <img src="./assets/img/profile.png" alt="Hero Image" />
+        <h1>Junior Frontend & Backend Developer</h1>
+        <p>I build web apps as a semi-fullstack developer and am still learning to do devops and UI/UX on my own.</p>
+      </article>
 
-        <article id="languages">
-          <h2>Languages I speak</h2>
-          <p>These are the programming languages I'm currently learning and using.</p>
-          <div id="languages-container" />
-        </article>
+      <article id="languages">
+        <h2>Languages I speak</h2>
+        <p>These are the programming languages I'm currently learning and using.</p>
+        <div class="card-container">
+          <a href="https://html.com/" target="_blank" style="--shadow: 28 100% 64%" class="card-item">
+            <img src="./assets/img/html.png" alt="html icon" />
+            HTML
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" style="--shadow: 200 100% 55%" class="card-item">
+            <img src="./assets/img/css.png" alt="css icon" />
+            CSS
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" style="--shadow: 53 100% 55%" class="card-item">
+            <img src="./assets/img/js.png" alt="js icon" />
+            Javascript
+          </a>
+          <a href="https://www.typescriptlang.org/" target="_blank" style="--shadow: 204 69% 42%" class="card-item">
+            <img src="./assets/img/ts.png" alt="ts icon" />
+            Typescript
+          </a>
+          <a href="https://www.php.net/docs.php" target="_blank" style="--shadow: 236 13% 55%" class="card-item">
+            <img src="./assets/img/php.png" alt="php icon" />
+            PHP
+          </a>
+          <a href="https://docs.oracle.com/en/java/" target="_blank" style="--shadow: 202 59% 35%" class="card-item">
+            <img src="./assets/img/java.png" alt="java icon" />
+            Java
+          </a>
+        </div>
+      </article>
 
-        <article id="frameworks">
-          <h2>Frameworks I work with</h2>
-          <p>These are the frameworks that help scaffold my projects.</p>
-          <div id="frameworks-container" />
-        </article>
+      <article id="frameworks">
+        <h2>Frameworks I work with</h2>
+        <p>These are the frameworks that help scaffold my projects.</p>
+        <div class="card-container">
+          <a href="https://react.dev/" target="_blank" style="--shadow: 184 100% 50%" class="card-item">
+            <img src="./assets/img/react.png" alt="react icon" />
+            ReactJS
+          </a>
+          <a href="https://expressjs.com/" target="_blank" style="--shadow: 360 5% 23%" class="card-item">
+            <img src="./assets/img/express.png" alt="express icon" />
+            ExpressJS
+          </a>
+          <a href="https://tailwindcss.com/" target="_blank" style="--shadow: 189 100% 45%" class="card-item">
+            <img src="./assets/img/tailwind.png" alt="tailwind icon" />
+            TailwindCSS
+          </a>
+          <a href="https://nextjs.org/" target="_blank" style="--shadow: 0 0% 0%" class="card-item">
+            <img src="./assets/img/next.png" alt="next icon" />
+            NextJS
+          </a>
+          <a href="https://www.codeigniter.com/" target="_blank" style="--shadow: 14 100% 53%" class="card-item">
+            <img src="./assets/img/ci.png" alt="ci icon" />
+            CodeIgniter
+          </a>
+        </div>
+      </article>
 
-        <article id="tools">
-          <h2>Tools I use</h2>
-          <p>These are the tools that help me develop and make new apps.</p>
-          <div id="tools-container" />
-        </article>
-      </div>
-
-      <aside data-show="false">
-        <button type="button" class="sidebar-toggle">About Me!</button>
-        <article>
-          <header>
-            <h3>Personal Profile</h3>
-            <figure>
-              <img class="img" data-img-name="myphoto.jpg" />
-              <figcaption>Dimas Adnan Yusuf Widyanto</figcaption>
-            </figure>
-          </header>
-          <div class="aside-content">
-            <section>
-              <h3>Contact Me</h3>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>email</th>
-                    <td>
-                      <a href="mailto:dimas.a280130@gmail.com">dimas.a280130@gmail.com</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>linkedin</th>
-                    <td>
-                      <a href="https://linkedin.com/in/dimas-adnan" target="_blank">linkedin.com/in/dimas-adnan</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <section>
-              <h3>Educations</h3>
-              <table>
-                <tr>
-                  <td>
-                    <h4>Bachelor of Informatics</h4>
-                    <p>Jenderal Soedirman University</p>
-                    <p>GPA 3.90 of 4.00</p>
-                  </td>
-                  <td>Aug 2020 - Jul 2025</td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4>Cloud Computing</h4>
-                    <p>Bangkit Academy 2023 Batch 2</p>
-                    <p>Final Score 94.80 of 100.00</p>
-                  </td>
-                  <td>Aug 2023 - Jan 2024</td>
-                </tr>
-              </table>
-            </section>
-            <section>
-              <h3>Certifications</h3>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="https://coursera.org/verify/5VDKS9CTP2T9" target="_blank">Basic Computer Networking</a>
-                    </td>
-                    <td>Aug 2023</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://www.dicoding.com/certificates/L4PQ83Q24ZO1" target="_blank">Basic Web Programming</a>
-                    </td>
-                    <td>Sep 2023</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://www.dicoding.com/certificates/1OP810YKLZQK" target="_blank">Basic Javascript</a>
-                    </td>
-                    <td>Sep 2023</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://www.dicoding.com/certificates/QLZ9R31J7P5D" target="_blank">Basic Backend Programming</a>
-                    </td>
-                    <td>Oct 2023</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://coursera.org/verify/DZYDMCP3QTQP" target="_blank">Junior SysAdmin & IT Support</a>
-                    </td>
-                    <td>Oct 2023</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://www.dicoding.com/certificates/GRX528KMYX0M" target="_blank">Junior Cloud Engineer</a>
-                    </td>
-                    <td>Nov 2023</td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-          </div>
-        </article>
-      </aside>
+      <article id="tools">
+        <h2>Tools I use</h2>
+        <p>These are the tools that help me develop and make new apps.</p>
+        <div class="card-container">
+          <a href="https://www.mysql.com/" target="_blank" style="--shadow: 196 64% 27%" class="card-item">
+            <img src="./assets/img/mysql.png" alt="mysql icon" />
+            MySQL
+          </a>
+          <a href="https://www.mongodb.com/" target="_blank" style="--shadow: 135 75% 50%" class="card-item">
+            <img src="./assets/img/mongodb.png" alt="mongodb icon" />
+            MongoDB
+          </a>
+          <a href="https://vitejs.dev/" target="_blank" style="--shadow: 280 75% 50%" class="card-item">
+            <img src="./assets/img/vite.png" alt="vite icon" />
+            ViteJS
+          </a>
+          <a href="https://nodejs.org/en" target="_blank" style="--shadow: 142 86% 29%" class="card-item">
+            <img src="./assets/img/nodejs.png" alt="nodejs icon" />
+            NodeJS
+          </a>
+          <a href="https://code.visualstudio.com/" target="_blank" style="--shadow: 208 100% 63%" class="card-item">
+            <img src="./assets/img/vscode.png" alt="vscode icon" />
+            Visual Studio Code
+          </a>
+        </div>
+      </article>
     </main>
+
+    <aside data-show="false">
+      <button type="button" class="sidebar-toggle">About Me!</button>
+      <article>
+        <header>
+          <h3>Personal Profile</h3>
+          <figure>
+            <img src="./assets/img/myphoto.jpg" alt="Dimas Adnan Yusuf Widyanto" />
+            <figcaption>Dimas Adnan Yusuf Widyanto</figcaption>
+          </figure>
+        </header>
+        <div class="aside-content">
+          <section>
+            <h3>Contact Me</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <th>email</th>
+                  <td>
+                    <a href="mailto:dimas.a280130@gmail.com">dimas.a280130@gmail.com</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>linkedin</th>
+                  <td>
+                    <a href="https://linkedin.com/in/dimas-adnan" target="_blank">linkedin.com/in/dimas-adnan</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h3>Educations</h3>
+            <table>
+              <tr>
+                <td>
+                  <h4>Bachelor of Informatics</h4>
+                  <p>Jenderal Soedirman University</p>
+                  <p>GPA 3.90 of 4.00</p>
+                </td>
+                <td>Aug 2020 - Jul 2025</td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Cloud Computing</h4>
+                  <p>Bangkit Academy 2023 Batch 2</p>
+                  <p>Final Score 94.80 of 100.00</p>
+                </td>
+                <td>Aug 2023 - Jan 2024</td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>Certifications</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="https://coursera.org/verify/5VDKS9CTP2T9" target="_blank">Basic Computer Networking</a>
+                  </td>
+                  <td>Aug 2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.dicoding.com/certificates/L4PQ83Q24ZO1" target="_blank">Basic Web Programming</a>
+                  </td>
+                  <td>Sep 2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.dicoding.com/certificates/1OP810YKLZQK" target="_blank">Basic Javascript</a>
+                  </td>
+                  <td>Sep 2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.dicoding.com/certificates/QLZ9R31J7P5D" target="_blank">Basic Backend Programming</a>
+                  </td>
+                  <td>Oct 2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://coursera.org/verify/DZYDMCP3QTQP" target="_blank">Junior SysAdmin & IT Support</a>
+                  </td>
+                  <td>Oct 2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.dicoding.com/certificates/GRX528KMYX0M" target="_blank">Junior Cloud Engineer</a>
+                  </td>
+                  <td>Nov 2023</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </article>
+    </aside>
 
     <footer>
       <h3>Day-Soft&trade;</h3>
