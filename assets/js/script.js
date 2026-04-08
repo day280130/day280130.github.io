@@ -1,10 +1,22 @@
 // Sidebar
-const button = document.querySelector(".sidebar-toggle");
-const asideElement = document.querySelector("aside");
-button.addEventListener("click", () => {
-  const currentState = asideElement.dataset.show;
+const sidebar = document.querySelector("aside");
+const sidebarToggle = document.querySelector(".sidebar-toggle");
+// attach sidebar state handler
+sidebarToggle.addEventListener("click", () => {
+  const currentState = sidebar.dataset.show;
   const nextState = currentState === "true" ? false : true;
-  asideElement.setAttribute("data-show", nextState);
+  sidebar.setAttribute("data-show", nextState);
+});
+// handle clicking outside aside element
+window.addEventListener("click", (mv) => {
+  const isSidebarOpen = sidebar.dataset.show === "true";
+  const isSidebar = sidebar.contains(mv.target);
+  // omitting sidebar trigger click here since it will be handled by its own click event listener
+  // and not omitting it result in sidebar close immediately after open when clicking the trigger
+  const isSidebarTrigger = sidebarToggle.contains(mv.target);
+  if (isSidebarOpen && !isSidebar && !isSidebarTrigger) {
+    sidebar.setAttribute("data-show", false);
+  }
 });
 
 // Dropdown
