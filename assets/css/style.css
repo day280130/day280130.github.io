@@ -245,7 +245,7 @@ main > article:first-child {
 main > article:first-child > .backdrop {
   position: absolute;
   z-index: -1;
-  top: 20vh;
+  top: 30vh;
   width: 100%;
   height: 50vh;
   background-image: linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--background)));
@@ -385,6 +385,8 @@ aside article {
 /* aside article header */
 
 aside header {
+  position: sticky;
+  top: 0;
   background-color: hsl(var(--background) / 0.5);
   padding: 1rem;
   padding-top: 2.25rem;
