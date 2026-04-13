@@ -327,6 +327,15 @@ main .card-container > .card-item > img {
   }
 }
 
+/* project section | TO BE STYLED LATER */
+
+/* the projects section */
+#projects,
+/* hyperlink directing to projects section */
+li > a[href="#projects"] {
+  display: none;
+}
+
 /* -------------- aside styles -------------- */
 
 /* aside root */
@@ -479,6 +488,7 @@ footer {
   text-align: center;
   padding-top: 3rem;
   padding-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 footer > h3 {
