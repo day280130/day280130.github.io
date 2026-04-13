@@ -317,6 +317,8 @@ main .card-container > .card-item:active {
 
 main .card-container > .card-item > img {
   width: 90%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
 }
 
 @media screen and (max-width: 500px) {
