@@ -309,6 +309,7 @@ main .card-container > .card-item:hover {
   transform: translateY(-3px) scale(1.02, 1.02);
   transform-origin: bottom center;
   box-shadow: 0 3px 20px 10px hsl(var(--shadow) / 0.5);
+  background-color: hsl(var(--foreground) / 0.1);
 }
 
 main .card-container > .card-item:active {
@@ -454,6 +455,10 @@ aside section > h3 {
 
 aside table {
   width: 100%;
+}
+
+aside tr:hover {
+  background-color: hsl(var(--foreground) / 0.1);
 }
 
 aside th {
