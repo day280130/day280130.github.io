@@ -439,7 +439,7 @@ aside .aside-content > *:not(:last-child) {
 aside section {
   background-color: hsl(var(--accent));
   border-radius: 10px;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 aside section > h3 {
