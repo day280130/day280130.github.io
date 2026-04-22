@@ -226,7 +226,7 @@ main > article {
 }
 
 @media screen and (max-width: 500px) {
-  main > article {
+  main > article > div {
     padding-inline: 0.17rem;
   }
 }
@@ -238,23 +238,27 @@ main > article > *:not(:last-child) {
 /* main hero article */
 
 main > article:first-child {
-  position: relative;
-  padding-top: 10vh;
+  display: flex;
+  background-image: url(/assets/img/background.jpg);
+  background-size: contain;
+  background-position: top right;
 }
 
-main > article:first-child > .backdrop {
-  position: absolute;
-  z-index: -1;
-  top: 30vh;
-  width: 100%;
-  height: 50vh;
+main > article:first-child > .hero-container {
+  position: relative;
+  flex: 1;
+  margin-top: 10vh;
+  padding-top: 20vh;
   background-image: linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--background)));
   border-radius: 25px 25px 0 0;
 }
 
-main > article:first-child > img {
+main > article:first-child .profile-img {
+  position: absolute;
   max-height: 40vh;
-  margin-inline: auto;
+  top: -20vh;
+  left: 50%;
+  transform: translate(-50%);
   background-color: hsl(var(--accent));
   border: 0.75rem solid hsl(var(--accent));
   border-radius: 999px;
