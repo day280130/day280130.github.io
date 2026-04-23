@@ -365,7 +365,7 @@ aside[data-show="true"] {
 
 aside .sidebar-toggle {
   position: absolute;
-  left: -4rem;
+  left: -3.2rem;
   top: 50%;
   bottom: 50%;
   height: 2rem;
@@ -381,7 +381,7 @@ aside .sidebar-toggle {
 
 @media screen and (max-width: 500px) {
   aside[data-show="true"] .sidebar-toggle {
-    translate: 2rem;
+    translate: 2.1rem;
     border-radius: 0 0 5px 5px;
   }
 }

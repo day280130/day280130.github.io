@@ -1,11 +1,13 @@
 // Sidebar
 const sidebar = document.querySelector("aside");
-const sidebarToggle = document.querySelector(".sidebar-toggle");
-// attach sidebar state handler
-sidebarToggle.addEventListener("click", () => {
-  const currentState = sidebar.dataset.show;
-  const nextState = currentState === "true" ? false : true;
-  sidebar.setAttribute("data-show", nextState);
+const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
+sidebarToggles.forEach((sidebarToggle) => {
+  // attach sidebar state handler
+  sidebarToggle.addEventListener("click", () => {
+    const currentState = sidebar.dataset.show;
+    const nextState = currentState === "true" ? false : true;
+    sidebar.setAttribute("data-show", nextState);
+  });
 });
 // handle clicking outside aside element
 window.addEventListener("click", (mv) => {
@@ -13,8 +15,13 @@ window.addEventListener("click", (mv) => {
   const isSidebar = sidebar.contains(mv.target);
   // omitting sidebar trigger click here since it will be handled by its own click event listener
   // and not omitting it result in sidebar close immediately after open when clicking the trigger
-  const isSidebarTrigger = sidebarToggle.contains(mv.target);
-  if (isSidebarOpen && !isSidebar && !isSidebarTrigger) {
+  let isSidebarToggle = false;
+  sidebarToggles.forEach((sidebarToggle) => {
+    if (sidebarToggle.contains(mv.target)) {
+      isSidebarToggle = true;
+    }
+  });
+  if (isSidebarOpen && !isSidebar && !isSidebarToggle) {
     sidebar.setAttribute("data-show", false);
   }
 });
