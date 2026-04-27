@@ -42,6 +42,7 @@ body {
 
 a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 a:active {
@@ -217,6 +218,19 @@ main p {
   line-height: 1.75rem;
 }
 
+@media screen and (max-width: 500px) {
+  main h1,
+  main h2 {
+    font-size: x-large;
+    line-height: 1.5rem;
+  }
+
+  main p {
+    font-size: medium;
+    line-height: 1.25rem;
+  }
+}
+
 /* main article root */
 
 main > article {
@@ -267,6 +281,8 @@ main > article:first-child .profile-img {
 /* main article card container */
 
 main .card-container {
+  width: min(100%, 1000px);
+  margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -286,13 +302,10 @@ main .card-container > .card-item {
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: 2rem;
-  min-width: 15%;
-  max-width: 180px;
+  padding: 1.5rem;
+  width: 150px;
   background-color: hsl(var(--accent));
   border-radius: 10px;
-  font-weight: 500;
-  font-size: x-large;
   transition:
     transform 0.1s,
     box-shadow 0.1s ease-in-out;
@@ -300,12 +313,8 @@ main .card-container > .card-item {
 
 @media screen and (max-width: 500px) {
   main .card-container > .card-item {
-    flex-direction: row;
-    min-width: 100%;
-    max-width: 300px;
-    font-size: xx-large;
-    line-height: 2rem;
-    text-align: left;
+    width: 120px;
+    padding: 1rem;
   }
 }
 
@@ -326,9 +335,14 @@ main .card-container > .card-item > img {
   object-fit: contain;
 }
 
+main .card-container > .card-item > p {
+  font-weight: 500;
+  font-size: x-large;
+}
+
 @media screen and (max-width: 500px) {
-  main .card-container > .card-item > img {
-    width: 30%;
+  main .card-container > .card-item > p {
+    font-size: large;
   }
 }
 
@@ -461,6 +475,16 @@ aside section > p {
   text-align: justify;
 }
 
+@media screen and (max-width: 500px) {
+  aside section > h3 {
+    font-size: medium;
+  }
+
+  aside section > p {
+    font-size: small;
+  }
+}
+
 /* aside table */
 
 aside table {
@@ -480,6 +504,15 @@ aside td {
   vertical-align: top;
   padding: 0.25rem 0.5rem;
   word-break: break-all;
+}
+
+@media screen and (max-width: 500px) {
+  aside td,
+  aside th {
+    font-size: small;
+    line-height: normal;
+    padding: 0.25rem 0.25rem;
+  }
 }
 
 aside td:last-child {
@@ -518,4 +551,23 @@ footer > *:not(:last-child) {
 
 footer > p:first-of-type {
   font-size: larger;
+}
+
+@media screen and (max-width: 500px) {
+  footer > h3 {
+    font-size: large;
+    line-height: 1.5rem;
+  }
+
+  footer > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  footer > p {
+    font-size: small;
+  }
+
+  footer > p:first-of-type {
+    font-size: medium;
+  }
 }
