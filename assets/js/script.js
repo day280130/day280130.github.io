@@ -1,3 +1,5 @@
+import InfiniteCarousel from "./infinite-carousel.js";
+
 // Sidebar
 const sidebar = document.querySelector("aside");
 const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
@@ -78,10 +80,12 @@ const setThemeDark = () => {
   localStorage.setItem("theme", "dark");
   body.setAttribute("data-theme", "dark");
 };
+document.querySelector("button.theme-dark").addEventListener("click", setThemeDark);
 const setThemeLight = () => {
   localStorage.setItem("theme", "light");
   body.setAttribute("data-theme", "light");
 };
+document.querySelector("button.theme-light").addEventListener("click", setThemeLight);
 const setThemeSystem = () => {
   localStorage.setItem("theme", "system");
   if (mql.matches) {
@@ -90,6 +94,7 @@ const setThemeSystem = () => {
     body.setAttribute("data-theme", "light");
   }
 };
+document.querySelector("button.theme-system").addEventListener("click", setThemeSystem);
 // handle theme state switching via browser setting
 mql.onchange = () => {
   // ignore if page theme not following browser/os theme
@@ -100,3 +105,11 @@ mql.onchange = () => {
     body.setAttribute("data-theme", "light");
   }
 };
+
+// Project Carousel
+const projectCarousel = new InfiniteCarousel({
+  containerSelector: ".carousel-container",
+  itemSelector: ".carousel-item",
+  nextButtonSelector: ".carousel-next",
+  prevButtonSelector: ".carousel-prev",
+});

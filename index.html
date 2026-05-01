@@ -10,6 +10,7 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/script.js" type="module"></script>
   </head>
 
   <body data-theme="dark">
@@ -83,7 +84,7 @@
           </svg>
         </button>
         <div class="dropdown-container prevent-animation">
-          <button type="button" class="dropdown-item" onclick="setThemeLight()">
+          <button type="button" class="dropdown-item theme-light">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -108,7 +109,7 @@
             </svg>
             Light
           </button>
-          <button type="button" class="dropdown-item" onclick="setThemeDark()">
+          <button type="button" class="dropdown-item theme-dark">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -125,7 +126,7 @@
             </svg>
             Dark
           </button>
-          <button type="button" class="dropdown-item" onclick="setThemeSystem()">
+          <button type="button" class="dropdown-item theme-system">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -238,35 +239,77 @@
       <article id="projects">
         <h2>Projects</h2>
         <p>These are some of the projects I have worked on.</p>
-        <div class="card-container">
-          <div class="card-item" style="--shadow: 54 100% 50%">
+        <div class="carousel-container">
+          <div class="carousel-item active" style="--shadow: 54 100% 50%">
             <img src="./assets/img/siraper.png" alt="siraper" />
-            <h3>Siraper</h3>
-            <a href="https://github.com/day280130/siraper" target="_blank">repository</a>
+            <div class="carousel-item-text">
+              <h3>Siraper</h3>
+              <a href="https://github.com/day280130/siraper" target="_blank">repository</a>
+            </div>
           </div>
-          <div class="card-item" style="--shadow: 0 100% 62%">
+          <div class="carousel-item next" style="--shadow: 0 100% 62%">
             <img src="./assets/img/lifebeam-backend.png" alt="lifebeam backend" />
-            <h3>Lifebeam (Backend)</h3>
-            <a href="https://github.com/day280130/lifebeam-backend" target="_blank">repository</a>
+            <div class="carousel-item-text">
+              <h3>Lifebeam (Backend)</h3>
+              <a href="https://github.com/day280130/lifebeam-backend" target="_blank">repository</a>
+            </div>
           </div>
-          <div class="card-item" style="--shadow: 0 0% 76%">
+          <div class="carousel-item" style="--shadow: 0 0% 76%">
             <img src="./assets/img/siperak.png" alt="siperak" />
-            <h3>Siperak</h3>
-            <a href="https://github.com/day280130/siperak-backend" target="_blank">backend repository</a>
-            <a href="https://github.com/day280130/siperak-frontend" target="_blank">frontend repository</a>
+            <div class="carousel-item-text">
+              <h3>Siperak</h3>
+              <a href="https://github.com/day280130/siperak-backend" target="_blank">backend repository</a>
+              <a href="https://github.com/day280130/siperak-frontend" target="_blank">frontend repository</a>
+            </div>
           </div>
-          <div class="card-item" style="--shadow: 283 100% 61%">
+          <div class="carousel-item" style="--shadow: 283 100% 61%">
             <img src="./assets/img/wibuletin.png" alt="wibuletin" />
-            <h3>Wibuletin</h3>
-            <a href="https://day280130.github.io/wibuletin/" target="_blank">site</a>
-            <a href="https://github.com/day280130/wibuletin" target="_blank">repository</a>
+            <div class="carousel-item-text">
+              <h3>Wibuletin</h3>
+              <a href="https://day280130.github.io/wibuletin/" target="_blank">site</a>
+              <a href="https://github.com/day280130/wibuletin" target="_blank">repository</a>
+            </div>
           </div>
-          <div class="card-item" style="--shadow: 247 100 35%">
+          <div class="carousel-item prev" style="--shadow: 247 100 35%">
             <img src="./assets/img/portfolio.png" alt="portfolio" />
-            <h3>Dev Portfolio</h3>
-            <a href="$" target="_blank">site</a>
-            <a href="https://github.com/day280130/day280130.github.io" target="_blank">repository</a>
+            <div class="carousel-item-text">
+              <h3>Dev Portfolio</h3>
+              <a href="https://day280130.github.io/" target="_blank">site</a>
+              <a href="https://github.com/day280130/day280130.github.io" target="_blank">repository</a>
+            </div>
           </div>
+          <button type="button" class="carousel-button carousel-prev" aria-label="Previous project">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-left-icon lucide-chevron-left"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button type="button" class="carousel-button carousel-next" aria-label="Next project">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right-icon lucide-chevron-right"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
         </div>
       </article>
     </main>
@@ -389,6 +432,5 @@
         Icons by <a href="https://lucide.dev/">Lucide Icon Community</a>.
       </p>
     </footer>
-    <script src="./assets/js/script.js"></script>
   </body>
 </html>

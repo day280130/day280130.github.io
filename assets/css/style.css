@@ -235,7 +235,7 @@ main p {
 
 main > article {
   min-height: 100vh;
-  padding-top: 20vh;
+  padding-top: 15vh;
   text-align: center;
 }
 
@@ -346,13 +346,128 @@ main .card-container > .card-item > p {
   }
 }
 
-/* project section | TO BE STYLED LATER */
+/* main article carousel */
 
-/* the projects section */
-#projects,
-/* hyperlink directing to projects section */
-li > a[href="#projects"] {
-  display: none;
+.carousel-container {
+  height: 33.3vw;
+  margin-inline: auto;
+  position: relative;
+}
+
+.carousel-item {
+  /* shape */
+  width: 59.2vw; /* 16:9 aspect ratio */
+  height: 33.3vw; /* 16:9 aspect ratio */
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* color */
+  background-color: hsl(var(--accent));
+
+  /* positioning */
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  z-index: -1;
+
+  /* animation */
+  opacity: 0;
+  transition:
+    opacity 0.3s ease-in-out,
+    translate 0.3s ease-in-out,
+    z-index 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  z-index: 2;
+  box-shadow: 0 3px 20px 10px hsl(var(--shadow) / 0.5);
+}
+
+.carousel-item.next {
+  translate: 55%;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.carousel-item.prev {
+  translate: -155%;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.carousel-item > img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.carousel-item-text {
+  /* shape */
+  width: 100%;
+
+  /* color */
+  background-color: hsl(var(--accent) / 0.7);
+
+  /* positioning */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.carousel-item-text > h3 {
+  font-size: xx-large;
+  font-weight: 600;
+}
+
+.carousel-button {
+  /* shape */
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+
+  /* positioning */
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 11;
+
+  /* color */
+  background-color: hsl(var(--foreground) / 0.3);
+  color: hsl(var(--background));
+
+  /* layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* animation */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.carousel-button:hover {
+  background-color: hsl(var(--foreground));
+}
+
+.carousel-button:active {
+  background-color: hsl(var(--foreground) / 0.7);
+}
+
+.carousel-button.carousel-prev {
+  left: 10%;
+  padding-right: 0.1rem;
+}
+
+.carousel-button.carousel-next {
+  right: 10%;
+  padding-left: 0.1rem;
 }
 
 /* -------------- aside styles -------------- */
