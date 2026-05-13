@@ -239,78 +239,111 @@
       <article id="projects">
         <h2>Projects</h2>
         <p>These are some of the projects I have worked on.</p>
-        <div class="carousel-container">
-          <div class="carousel-item active" style="--shadow: 54 100% 50%">
-            <img src="./assets/img/siraper.png" alt="siraper" />
-            <div class="carousel-item-text">
-              <h3>Siraper</h3>
-              <a href="https://github.com/day280130/siraper" target="_blank">repository</a>
-            </div>
+        <section aria-label="Projects carousel" class="carousel-container">
+          <ol aria-label="Carousel items" class="carousel-items">
+            <li aria-current="page" class="carousel-item active" style="--shadow: 54 100% 50%">
+              <img src="./assets/img/siraper.png" alt="siraper" />
+              <div class="carousel-item-text">
+                <h3>Siraper</h3>
+                <a href="https://github.com/day280130/siraper" target="_blank">repository</a>
+              </div>
+            </li>
+            <li class="carousel-item next" style="--shadow: 0 100% 62%">
+              <img src="./assets/img/lifebeam-backend.png" alt="lifebeam backend" />
+              <div class="carousel-item-text">
+                <h3>Lifebeam (Backend)</h3>
+                <a href="https://github.com/day280130/lifebeam-backend" target="_blank">repository</a>
+              </div>
+            </li>
+            <li class="carousel-item" style="--shadow: 0 0% 76%">
+              <img src="./assets/img/siperak.png" alt="siperak" />
+              <div class="carousel-item-text">
+                <h3>Siperak</h3>
+                <a href="https://github.com/day280130/siperak-backend" target="_blank">backend repository</a>
+                <a href="https://github.com/day280130/siperak-frontend" target="_blank">frontend repository</a>
+              </div>
+            </li>
+            <li class="carousel-item" style="--shadow: 283 100% 61%">
+              <img src="./assets/img/wibuletin.png" alt="wibuletin" />
+              <div class="carousel-item-text">
+                <h3>Wibuletin</h3>
+                <a href="https://day280130.github.io/wibuletin/" target="_blank">site</a>
+                <a href="https://github.com/day280130/wibuletin" target="_blank">repository</a>
+              </div>
+            </li>
+            <li class="carousel-item prev" style="--shadow: 247 100 35%">
+              <img src="./assets/img/portfolio.png" alt="portfolio" />
+              <div class="carousel-item-text">
+                <h3>Dev Portfolio</h3>
+                <a href="https://day280130.github.io/" target="_blank">site</a>
+                <a href="https://github.com/day280130/day280130.github.io" target="_blank">repository</a>
+              </div>
+            </li>
+          </ol>
+          <div aria-label="Carousel controls" class="carousel-controls">
+            <button aria-label="Previous page" class="carousel-control carousel-prev">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-left-icon lucide-chevron-left"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button aria-label="Next page" class="carousel-control carousel-next">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right-icon lucide-chevron-right"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
           </div>
-          <div class="carousel-item next" style="--shadow: 0 100% 62%">
-            <img src="./assets/img/lifebeam-backend.png" alt="lifebeam backend" />
-            <div class="carousel-item-text">
-              <h3>Lifebeam (Backend)</h3>
-              <a href="https://github.com/day280130/lifebeam-backend" target="_blank">repository</a>
-            </div>
-          </div>
-          <div class="carousel-item" style="--shadow: 0 0% 76%">
-            <img src="./assets/img/siperak.png" alt="siperak" />
-            <div class="carousel-item-text">
-              <h3>Siperak</h3>
-              <a href="https://github.com/day280130/siperak-backend" target="_blank">backend repository</a>
-              <a href="https://github.com/day280130/siperak-frontend" target="_blank">frontend repository</a>
-            </div>
-          </div>
-          <div class="carousel-item" style="--shadow: 283 100% 61%">
-            <img src="./assets/img/wibuletin.png" alt="wibuletin" />
-            <div class="carousel-item-text">
-              <h3>Wibuletin</h3>
-              <a href="https://day280130.github.io/wibuletin/" target="_blank">site</a>
-              <a href="https://github.com/day280130/wibuletin" target="_blank">repository</a>
-            </div>
-          </div>
-          <div class="carousel-item prev" style="--shadow: 247 100 35%">
-            <img src="./assets/img/portfolio.png" alt="portfolio" />
-            <div class="carousel-item-text">
-              <h3>Dev Portfolio</h3>
-              <a href="https://day280130.github.io/" target="_blank">site</a>
-              <a href="https://github.com/day280130/day280130.github.io" target="_blank">repository</a>
-            </div>
-          </div>
-          <button type="button" class="carousel-button carousel-prev" aria-label="Previous project">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-chevron-left-icon lucide-chevron-left"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <button type="button" class="carousel-button carousel-next" aria-label="Next project">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-chevron-right-icon lucide-chevron-right"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-        </div>
+          <nav aria-label="Carousel pagination" class="carousel-pagination">
+            <ol class="carousel-page-dots">
+              <li>
+                <button aria-label="Go to page 1" aria-current="page" class="carousel-page-dot active">
+                  <span class="sr-only">Page 1</span>
+                </button>
+              </li>
+              <li>
+                <button aria-label="Go to page 2" class="carousel-page-dot">
+                  <span class="sr-only">Page 2</span>
+                </button>
+              </li>
+              <li>
+                <button aria-label="Go to page 3" class="carousel-page-dot">
+                  <span class="sr-only">Page 3</span>
+                </button>
+              </li>
+              <li>
+                <button aria-label="Go to page 4" class="carousel-page-dot">
+                  <span class="sr-only">Page 4</span>
+                </button>
+              </li>
+              <li>
+                <button aria-label="Go to page 5" class="carousel-page-dot">
+                  <span class="sr-only">Page 5</span>
+                </button>
+              </li>
+            </ol>
+          </nav>
+        </section>
       </article>
     </main>
 

@@ -22,6 +22,15 @@
   }
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -235,7 +244,7 @@ main p {
 
 main > article {
   min-height: 100vh;
-  padding-top: 15vh;
+  padding-top: 13vh;
   text-align: center;
 }
 
@@ -349,15 +358,24 @@ main .card-container > .card-item > p {
 /* main article carousel */
 
 .carousel-container {
-  height: 33.3vw;
+  --item-height: 33.3vw;
+  --item-width: 59.2vw;
+  --pagination-height: 2rem;
+  --animation-duration: 0.3s;
+  height: calc(var(--item-height) + var(--pagination-height));
+  position: relative;
+}
+
+.carousel-items {
+  height: var(--item-height);
   margin-inline: auto;
   position: relative;
 }
 
 .carousel-item {
   /* shape */
-  width: 59.2vw; /* 16:9 aspect ratio */
-  height: 33.3vw; /* 16:9 aspect ratio */
+  height: var(--item-height); /* 16:9 aspect ratio */
+  width: var(--item-width); /* 16:9 aspect ratio */
   border-radius: 10px;
   overflow: hidden;
 
@@ -373,10 +391,10 @@ main .card-container > .card-item > p {
   /* animation */
   opacity: 0;
   transition:
-    opacity 0.3s ease-in-out,
-    translate 0.3s ease-in-out,
-    z-index 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+    opacity var(--animation-duration) ease-in-out,
+    translate var(--animation-duration) ease-in-out,
+    z-index var(--animation-duration) ease-in-out,
+    box-shadow var(--animation-duration) ease-in-out;
 }
 
 .carousel-item.active {
@@ -427,17 +445,21 @@ main .card-container > .card-item > p {
   font-weight: 600;
 }
 
-.carousel-button {
+.carousel-controls {
+  position: absolute;
+  inset: calc(var(--item-height) / 2) 10% 0 10%;
+  translate: 0 -50%;
+  z-index: 11;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-control {
   /* shape */
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-
-  /* positioning */
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  z-index: 11;
 
   /* color */
   background-color: hsl(var(--foreground) / 0.3);
@@ -449,25 +471,59 @@ main .card-container > .card-item > p {
   align-items: center;
 
   /* animation */
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color var(--animation-duration) ease-in-out;
 }
 
-.carousel-button:hover {
+.carousel-control:hover {
   background-color: hsl(var(--foreground));
 }
 
-.carousel-button:active {
+.carousel-control:active {
   background-color: hsl(var(--foreground) / 0.7);
 }
 
-.carousel-button.carousel-prev {
-  left: 10%;
+.carousel-control.carousel-prev {
   padding-right: 0.1rem;
 }
 
-.carousel-button.carousel-next {
-  right: 10%;
+.carousel-control.carousel-next {
   padding-left: 0.1rem;
+}
+
+.carousel-pagination {
+  height: var(--pagination-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-page-dots {
+  width: min-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.carousel-page-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: hsl(var(--foreground) / 0.3);
+  transition:
+    background-color var(--animation-duration) ease-in-out,
+    box-shadow var(--animation-duration) ease-in-out;
+}
+
+.carousel-page-dot:hover,
+.carousel-page-dot:active {
+  background-color: hsl(var(--foreground) / 0.7);
+  box-shadow: 0 0 5px 2px hsl(var(--foreground) / 0.5);
+}
+
+.carousel-page-dot.active {
+  background-color: hsl(var(--foreground));
+  box-shadow: 0 0 5px 2px hsl(var(--foreground) / 0.5);
+  cursor: default;
 }
 
 /* -------------- aside styles -------------- */

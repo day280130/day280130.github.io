@@ -110,6 +110,11 @@ mql.onchange = () => {
 const projectCarousel = new InfiniteCarousel({
   containerSelector: ".carousel-container",
   itemSelector: ".carousel-item",
+  activeClassName: "active",
+  nextClassName: "next",
+  prevClassName: "prev",
   nextButtonSelector: ".carousel-next",
   prevButtonSelector: ".carousel-prev",
+  paginationButtonSelector: ".carousel-page-dot",
+  customNavigateFunction: (destIndex, items, paginationButtons, activeIndex, setactiveIndex, defaultNavigate) => defaultNavigate(destIndex),
 });
