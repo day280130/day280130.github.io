@@ -116,5 +116,11 @@ const projectCarousel = new InfiniteCarousel({
   nextButtonSelector: ".carousel-next",
   prevButtonSelector: ".carousel-prev",
   paginationButtonSelector: ".carousel-page-dot",
-  customNavigateFunction: (destIndex, items, paginationButtons, activeIndex, setactiveIndex, defaultNavigate) => defaultNavigate(destIndex),
+  customNavigateFunction: (destIndex, carousel, setActiveIndex, isItemCloned) => {
+    // if destIndex delta is 1:
+    carousel.navigateTo(destIndex);
+
+    // if destIndex delta is 2 or more:
+    // TODO: smooth transition
+  },
 });

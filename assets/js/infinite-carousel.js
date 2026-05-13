@@ -25,19 +25,17 @@ export default class InfiniteCarousel {
    */
 
   /**
-   * @callback NavigateToFunction
+   * @callback IsItemCloned
    * @param {number} index - The index to navigate to
-   * @returns {void}
+   * @returns {boolean} True if the item at the given index is a cloned item, false otherwise
    */
 
   /**
    * @callback CustomNavigateFunction
    * @param {number} destinationIndex - The target item index
-   * @param {HTMLElement[]} items - Array of carousel items
-   * @param {HTMLElement[]} paginationButtons - Array of pagination buttons
-   * @param {number} activeItemIndex - The current active item index
-   * @param {SetActiveItemIndexFunction} setActiveItemIndex - Function to update the active item index
-   * @param {NavigateToFunction} navigateTo - The default navigation function
+   * @param {InfiniteCarousel} carousel - The carousel instance for accessing public methods
+   * @param {SetActiveItemIndexFunction} setActiveItemIndex - Set the carousel's active item index
+   * @param {IsItemCloned} isItemCloned - Check if the item at the given index is a cloned item
    * @returns {void}
    */
 
@@ -68,12 +66,14 @@ export default class InfiniteCarousel {
     this.#nextClassName = config.nextClassName ?? "next";
     this.#prevClassName = config.prevClassName ?? "prev";
 
+    const customNavFuncParams = [this, this.#setActiveItemIndex.bind(this), this.#isItemCloned.bind(this)];
+
     if (config.nextButtonSelector !== undefined) {
       const nextButton = getElement(config.nextButtonSelector, "Carousel next button is not found");
       nextButton.addEventListener("click", () => {
         const nextIndex = (this.#activeItemIndex + 1) % this.#items.length;
         if (config.customNavigateFunction) {
-          config.customNavigateFunction(nextIndex, this.#items, this.#paginationButtons, this.#activeItemIndex, this.#setActiveItemIndex.bind(this), this.navigateTo.bind(this));
+          config.customNavigateFunction(nextIndex, ...customNavFuncParams);
         } else {
           this.navigateTo(nextIndex);
         }
@@ -85,14 +85,14 @@ export default class InfiniteCarousel {
       prevButton.addEventListener("click", () => {
         const prevIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
         if (config.customNavigateFunction) {
-          config.customNavigateFunction(prevIndex, this.#items, this.#paginationButtons, this.#activeItemIndex, this.#setActiveItemIndex.bind(this), this.navigateTo.bind(this));
+          config.customNavigateFunction(prevIndex, ...customNavFuncParams);
         } else {
           this.navigateTo(prevIndex);
         }
       });
     }
 
-    // need to be wrapped in a try-catch so that initiateClasses() will still run even if there is an error with pagination buttons. Moving initiateClasses() before handling pagination buttons is not an option, because the logic handling pagination buttons needs the items.length state to reflect the actual number of items in the carousel, and there will be cloned items added in initiateClasses() if there are only 2 actual items in the carousel. Also, if there is an error with pagination buttons, we want to log the error but still allow the carousel to function without pagination rather than breaking the entire carousel functionality.
+    // need to be wrapped in a try-catch so that initiateItems() will still run even if there is an error with pagination buttons. Moving initiateItems() before handling pagination buttons is not an option, because the logic handling pagination buttons needs the items.length state to reflect the original number of items in the carousel, and there will be cloned items added in initiateItems() if there are only 2 actual items originally. Also, if there is an error with pagination buttons initialization, we want to log the error and still allow the carousel to function without pagination.
     try {
       if (config.paginationButtonSelector !== undefined) {
         this.#paginationButtons = Array.from(getElements(config.paginationButtonSelector ?? ".carousel-pagination-button", "Carousel pagination buttons are required"));
@@ -104,7 +104,7 @@ export default class InfiniteCarousel {
         this.#paginationButtons.forEach((button, index) => {
           button.addEventListener("click", () => {
             if (config.customNavigateFunction) {
-              config.customNavigateFunction(index, this.#items, this.#paginationButtons, this.#activeItemIndex, this.#setActiveItemIndex.bind(this), this.navigateTo.bind(this));
+              config.customNavigateFunction(index, ...customNavFuncParams);
             } else {
               this.navigateTo(index);
             }
@@ -119,6 +119,16 @@ export default class InfiniteCarousel {
   }
 
   /**
+   * Checks if a carousel item at the given index is a cloned item
+   * @type {IsItemCloned}
+   * @private
+   */
+  #isItemCloned(index) {
+    // TODO: implement a way to determine if an item is cloned
+    return false;
+  }
+
+  /**
    * Sets the active item index
    * @type {SetActiveItemIndexFunction}
    * @private
@@ -129,14 +139,6 @@ export default class InfiniteCarousel {
       throw new Error("Invalid index");
     }
     this.#activeItemIndex = index;
-  }
-
-  /**
-   * Logs the current state of the carousel's private fields for debugging purposes
-   * @private
-   */
-  #printPrivateFields() {
-    console.log("active:", this.#activeItemIndex, this.#items, "pagination buttons", this.#paginationButtons);
   }
 
   /**
@@ -201,13 +203,15 @@ export default class InfiniteCarousel {
 
   /**
    * Advances the carousel to the desired item index and updates pagination state
-   * @type {NavigateToFunction}
    * @public
+   * @param {number} index - The index of the item to navigate to
    */
   navigateTo(index) {
     if (this.#items.length <= 1) return;
 
     this.#clearItemsStates();
+
+    // TODO: handle the case when carousel item is initially two, but then become four after getting cloned by initiateItems(), but the pagination button isn't cloned
 
     this.#setActiveItemIndex(index);
     const nextItemIndex = (index + 1) % this.#items.length;
@@ -220,5 +224,34 @@ export default class InfiniteCarousel {
     this.#items[this.#activeItemIndex].ariaCurrent = "page";
 
     this.#activatePaginationButton(this.#activeItemIndex);
+  }
+
+  /**
+   * Gets the index of the currently active carousel item
+   * @public
+   * @returns {number} The index of the active item
+   */
+  getActiveItemIndex() {
+    return this.#activeItemIndex;
+  }
+
+  /**
+   * Gets all carousel items
+   * @public
+   * @returns {HTMLElement[]} Copy of array of carousel item elements
+   */
+  getItems() {
+    // prevents external code from accidentally modifying the internal state of the carousel.
+    return [...this.#items];
+  }
+
+  /**
+   * Gets all pagination buttons
+   * @public
+   * @returns {HTMLElement[]} Copy of array of pagination button elements
+   */
+  getPaginationButtons() {
+    // prevents external code from accidentally modifying the internal state of the carousel.
+    return [...this.#paginationButtons];
   }
 }
