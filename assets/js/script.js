@@ -109,6 +109,7 @@ mql.onchange = () => {
 // Project Carousel
 const projectCarousel = new InfiniteCarousel({
   containerSelector: ".carousel-container",
+  itemsContainerSelector: ".carousel-items",
   itemSelector: ".carousel-item",
   activeClassName: "active",
   nextClassName: "next",
