@@ -111,7 +111,6 @@ export default class InfiniteCarousel {
    */
   setItemsStates({ activeItemIndex, nextItemIndex, prevItemIndex }) {
     if (activeItemIndex !== undefined) {
-      if (activeItemIndex === this.#activeItemIndex) return;
       if (!this.isIndexValid(activeItemIndex)) {
         throw new Error("Invalid active item index target");
       }
