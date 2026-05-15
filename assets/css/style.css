@@ -361,7 +361,8 @@ main .card-container > .card-item > p {
   --item-height: 33.3vw;
   --item-width: 59.2vw;
   --pagination-height: 2rem;
-  --animation-duration: 0.3s;
+  --transition-duration: 0.3s;
+  --transition-function: ease-in-out;
   height: calc(var(--item-height) + var(--pagination-height));
   position: relative;
 }
@@ -391,10 +392,10 @@ main .card-container > .card-item > p {
   /* animation */
   opacity: 0;
   transition:
-    opacity var(--animation-duration) ease-in-out,
-    translate var(--animation-duration) ease-in-out,
-    z-index var(--animation-duration) ease-in-out,
-    box-shadow var(--animation-duration) ease-in-out;
+    opacity var(--transition-duration) var(--transition-function),
+    translate var(--transition-duration) var(--transition-function),
+    z-index var(--transition-duration) var(--transition-function),
+    box-shadow var(--transition-duration) var(--transition-function);
 }
 
 .carousel-item.active {
@@ -471,7 +472,7 @@ main .card-container > .card-item > p {
   align-items: center;
 
   /* animation */
-  transition: background-color var(--animation-duration) ease-in-out;
+  transition: background-color var(--transition-duration) ease-in-out;
 }
 
 .carousel-control:hover {
@@ -510,8 +511,8 @@ main .card-container > .card-item > p {
   border-radius: 50%;
   background-color: hsl(var(--foreground) / 0.3);
   transition:
-    background-color var(--animation-duration) ease-in-out,
-    box-shadow var(--animation-duration) ease-in-out;
+    background-color var(--transition-duration) var(--transition-function),
+    box-shadow var(--transition-duration) var(--transition-function);
 }
 
 .carousel-page-dot:hover,

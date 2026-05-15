@@ -1,4 +1,5 @@
 import InfiniteCarousel from "./infinite-carousel.js";
+import { smoothTransitionFactory } from "./smooth-transition.js";
 
 // Sidebar
 const sidebar = document.querySelector("aside");
@@ -107,6 +108,11 @@ mql.onchange = () => {
 };
 
 // Project Carousel
+const smoothTransition = smoothTransitionFactory({
+  containerSelector: ".carousel-container",
+  transitionDuration: 300,
+  transitionFunction: "ease-in-out",
+});
 const projectCarousel = new InfiniteCarousel({
   containerSelector: ".carousel-container",
   itemsContainerSelector: ".carousel-items",
@@ -117,11 +123,5 @@ const projectCarousel = new InfiniteCarousel({
   nextButtonSelector: ".carousel-next",
   prevButtonSelector: ".carousel-prev",
   paginationButtonSelector: ".carousel-page-dot",
-  customNavigateFunction: (destIndex, carousel, setActiveIndex, isItemCloned) => {
-    // if destIndex delta is 1:
-    carousel.navigateTo(destIndex);
-
-    // if destIndex delta is 2 or more:
-    // TODO: smooth transition
-  },
+  customNavigateFunction: smoothTransition,
 });
