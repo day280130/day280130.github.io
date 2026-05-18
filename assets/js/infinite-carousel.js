@@ -146,6 +146,7 @@ export default class InfiniteCarousel {
     });
     this.#paginationButtons.forEach((button) => {
       button.classList.remove(this.#activeClassName);
+      button.ariaCurrent = null;
     });
   }
 
@@ -158,6 +159,7 @@ export default class InfiniteCarousel {
   setActivePaginationButton(index) {
     if (this.#paginationButtons[index] !== undefined) {
       this.#paginationButtons[index].classList.add(this.#activeClassName);
+      this.#paginationButtons[index].ariaCurrent = "page";
     }
   }
 
