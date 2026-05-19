@@ -69,10 +69,8 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
     const initialActiveIndex = carousel.getActiveItemIndex();
 
     const distanceRight = (destIndex + itemsCount - initialActiveIndex) % itemsCount;
-    console.log("distanceRight: ", distanceRight);
 
     const distanceLeft = (initialActiveIndex - destIndex + itemsCount) % itemsCount;
-    console.log("distanceLeft: ", distanceLeft);
 
     const distance = Math.min(distanceRight, distanceLeft);
 
@@ -92,24 +90,48 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
     const transitionDirection = distanceRight <= distanceLeft ? "right" : "left";
 
     /**
-     * duration for individual transition. Set to be 100ms minimum to prevent each transition going too fast
+     * The way this smooth transition works is by turning it into compound transition, and then transitioning
+     * the slide one by one until the destination is reached. The first transition's function is turned into
+     * ease-in, and from the second on is turned into linear, until the last transition is turned into ease-out,
+     * simulating an ease-in-out transition function for the compound transition
      */
-    const compoundTransitionDuration = Math.max(100, Math.ceil(transitionDuration / distance));
 
-    // reduce carousel's transition duration temporarily to prevent the total compound transition for going too long
-    setTransitionDuration(compoundTransitionDuration);
+    /**
+     * duration for ease transitions. Set to be 200ms minimum to prevent each transition from going too fast
+     */
+    const easeTransitionDuration = Math.max(200, Math.ceil(transitionDuration / 2));
 
-    // changed transition function to linear for smoother experience (needs improvement)
-    setTransitionFunction("linear");
+    /**
+     * duration for linear transitions. Set to be 150ms minimum to prevent each transition from going too fast
+     */
+    const linearTransitionDuration = Math.max(150, Math.ceil(transitionDuration / 3));
 
+    // combined ease-in, linear, and ease-out functions for smoother experience
     for (let index = 0; index < distance; index++) {
-      setTimeout(
-        () => {
-          carousel.navigateTo(getNextIndex(carousel.getActiveItemIndex(), itemsCount, transitionDirection));
-        },
-        // adding 5ms to make sure the transition duration and function change already applied before begining compound transition
-        index * compoundTransitionDuration + 5,
-      );
+      /** @type {string} */
+      let currentTransitionFunction;
+      /** @type {number} */
+      let currentTransitionDuration;
+      /** @type {number} */
+      let currentTransitionDelay;
+      if (index === 0) {
+        currentTransitionFunction = "ease-in";
+        currentTransitionDuration = easeTransitionDuration;
+        currentTransitionDelay = 0;
+      } else if (index < distance - 1) {
+        currentTransitionFunction = "linear";
+        currentTransitionDuration = linearTransitionDuration;
+        currentTransitionDelay = easeTransitionDuration + (index - 1) * linearTransitionDuration;
+      } else {
+        currentTransitionFunction = "ease-out";
+        currentTransitionDuration = easeTransitionDuration;
+        currentTransitionDelay = easeTransitionDuration + (index - 1) * linearTransitionDuration;
+      }
+      setTimeout(() => {
+        setTransitionFunction(currentTransitionFunction);
+        setTransitionDuration(currentTransitionDuration);
+        carousel.navigateTo(getNextIndex(carousel.getActiveItemIndex(), itemsCount, transitionDirection));
+      }, currentTransitionDelay);
     }
 
     setTimeout(
@@ -120,7 +142,7 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
         transitionIsOngoing = false;
       },
       // adding 10ms to make sure the last compound transition already finished
-      compoundTransitionDuration * distance + 10,
+      easeTransitionDuration * 2 + (distance - 2) * linearTransitionDuration,
     );
   };
 };
