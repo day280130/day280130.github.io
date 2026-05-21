@@ -64,6 +64,8 @@ export default class InfiniteCarousel {
     this.#nextClassName = config.nextClassName ?? "next";
     this.#prevClassName = config.prevClassName ?? "prev";
 
+    this.#initiateWheelListener(config);
+
     this.#initiateControlButtons(config);
 
     // need to be wrapped in a try-catch so that initiateItems() will still run even if there is an error while initializing pagination buttons. Moving initiateItems() before handling pagination buttons is not an option, because the logic handling pagination buttons needs the items.length state to reflect the original number of items in the carousel, and there will be cloned items added in initiateItems() if there are only 2 actual items originally. Also, if there is an error with pagination buttons initialization, we want to log the error and still allow the carousel to function without pagination.
@@ -227,6 +229,33 @@ export default class InfiniteCarousel {
   getPaginationButtons() {
     // prevents external code from accidentally modifying the internal state of the carousel.
     return [...this.#paginationButtons];
+  }
+
+  /**
+   * Attach event listeners to handle mouse wheel interactions for the carousel
+   * @private
+   * @param {InfiniteCarouselConfig} config - Carousel configuration object
+   * @returns {void}
+   */
+  #initiateWheelListener({ customNavigateFunction }) {
+    this.#container.addEventListener("wheel", (event) => {
+      // some browsers still modify deltaY instead of deltaX when user use mouse wheel while holding shift key
+      if (event.deltaX > 0 || (event.deltaY > 0 && event.shiftKey)) {
+        const nextIndex = (this.#activeItemIndex + 1) % this.#items.length;
+        if (customNavigateFunction !== undefined) {
+          customNavigateFunction(nextIndex, this);
+        } else {
+          this.navigateTo(nextIndex);
+        }
+      } else if (event.deltaX < 0 || (event.deltaY < 0 && event.shiftKey)) {
+        const prevIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
+        if (customNavigateFunction !== undefined) {
+          customNavigateFunction(prevIndex, this);
+        } else {
+          this.navigateTo(prevIndex);
+        }
+      }
+    });
   }
 
   /**
