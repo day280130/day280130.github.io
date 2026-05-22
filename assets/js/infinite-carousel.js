@@ -91,6 +91,30 @@ export default class InfiniteCarousel {
   }
 
   /**
+   * Gets the index of the next item relative to the given index
+   * @public
+   * @param {number} index - The reference index to find the next item from
+   * @returns {number} The index of the next item
+   * @throws {Error} Will throw an error if the index provided is not valid to the carousel
+   */
+  getNextItemIndex(index) {
+    if (!this.isIndexValid(index)) throw new Error("Invalid index");
+    return (index + 1) % this.#items.length;
+  }
+
+  /**
+   * Gets the index of the previous item relative to the given index
+   * @public
+   * @param {number} index - The reference index to find the previous item from
+   * @returns {number} The index of the previous item
+   * @throws {Error} Will throw an error if the index provided is not valid to the carousel
+   */
+  getPreviousItemIndex(index) {
+    if (!this.isIndexValid(index)) throw new Error("Invalid index");
+    return (index - 1 + this.#items.length) % this.#items.length;
+  }
+
+  /**
    * Checks if a carousel item at the given index is a cloned item
    * @public
    * @param {number} index - The index to navigate to
@@ -187,8 +211,8 @@ export default class InfiniteCarousel {
 
     this.clearItemsAndButtonsStates();
 
-    const nextItemIndex = (destinationIndex + 1) % this.#items.length;
-    const prevItemIndex = (destinationIndex - 1 + this.#items.length) % this.#items.length;
+    const nextItemIndex = this.getNextItemIndex(destinationIndex);
+    const prevItemIndex = this.getPreviousItemIndex(destinationIndex);
 
     this.setItemsStates({
       activeItemIndex: destinationIndex,
@@ -241,21 +265,18 @@ export default class InfiniteCarousel {
    */
   #initiateWheelListener({ customNavigateFunction }) {
     this.#container.addEventListener("wheel", (event) => {
+      let targetIndex = -1;
       // some browsers still modify deltaY instead of deltaX when user use mouse wheel while holding shift key
       if (event.deltaX > 0 || (event.deltaY > 0 && event.shiftKey)) {
-        const nextIndex = (this.#activeItemIndex + 1) % this.#items.length;
-        if (customNavigateFunction !== undefined) {
-          customNavigateFunction(nextIndex, this);
-        } else {
-          this.navigateTo(nextIndex);
-        }
+        targetIndex = this.getNextItemIndex(this.#activeItemIndex);
       } else if (event.deltaX < 0 || (event.deltaY < 0 && event.shiftKey)) {
-        const prevIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
-        if (customNavigateFunction !== undefined) {
-          customNavigateFunction(prevIndex, this);
-        } else {
-          this.navigateTo(prevIndex);
-        }
+        targetIndex = this.getPreviousItemIndex(this.#activeItemIndex);
+      }
+
+      if (customNavigateFunction !== undefined) {
+        customNavigateFunction(targetIndex, this);
+      } else {
+        this.navigateTo(targetIndex);
       }
     });
   }
@@ -269,6 +290,9 @@ export default class InfiniteCarousel {
   #initiateSwipeListener({ customNavigateFunction }) {
     let touchStartX = 0;
     let touchStartY = 0;
+
+    /** minimum distance in pixels for a swipe to be registered */
+    const deltaThreshold = 50;
 
     this.#container.addEventListener("touchstart", (event) => {
       touchStartX = event.changedTouches[0].clientX;
@@ -285,22 +309,22 @@ export default class InfiniteCarousel {
       // to prevent triggering some browser's default swipe url navigation when user is swiping on the carousel
       event.preventDefault();
 
-      if (deltaX < -50) {
+      let targetIndex = -1;
+      if (deltaX < -deltaThreshold) {
         // swiped left
-        const nextIndex = (this.#activeItemIndex + 1) % this.#items.length;
-        if (customNavigateFunction !== undefined) {
-          customNavigateFunction(nextIndex, this);
-        } else {
-          this.navigateTo(nextIndex);
-        }
-      } else if (deltaX > 50) {
+        targetIndex = this.getNextItemIndex(this.#activeItemIndex);
+      } else if (deltaX > deltaThreshold) {
         // swiped right
-        const prevIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
-        if (customNavigateFunction !== undefined) {
-          customNavigateFunction(prevIndex, this);
-        } else {
-          this.navigateTo(prevIndex);
-        }
+        targetIndex = this.getPreviousItemIndex(this.#activeItemIndex);
+      }
+
+      // to prevent navigation fires before swipe distance threshold is reached
+      if (targetIndex === -1) return;
+
+      if (customNavigateFunction !== undefined) {
+        customNavigateFunction(targetIndex, this);
+      } else {
+        this.navigateTo(targetIndex);
       }
     });
   }
@@ -316,7 +340,7 @@ export default class InfiniteCarousel {
     if (nextButtonSelector !== undefined) {
       const nextButton = getElement(nextButtonSelector, this.#container, "Carousel next button is not found");
       nextButton.addEventListener("click", () => {
-        const nextIndex = (this.#activeItemIndex + 1) % this.#items.length;
+        const nextIndex = this.getNextItemIndex(this.#activeItemIndex);
         if (customNavigateFunction !== undefined) {
           customNavigateFunction(nextIndex, this);
         } else {
@@ -328,7 +352,7 @@ export default class InfiniteCarousel {
     if (prevButtonSelector !== undefined) {
       const prevButton = getElement(prevButtonSelector, this.#container, "Carousel previous button is not found");
       prevButton.addEventListener("click", () => {
-        const prevIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
+        const prevIndex = this.getPreviousItemIndex(this.#activeItemIndex);
         if (customNavigateFunction !== undefined) {
           customNavigateFunction(prevIndex, this);
         } else {
@@ -365,7 +389,7 @@ export default class InfiniteCarousel {
           if (currentButton.classList.contains(this.#activeClassName)) {
             destinationIndex = this.#activeItemIndex;
           } else {
-            destinationIndex = (this.#activeItemIndex - 1 + this.#items.length) % this.#items.length;
+            destinationIndex = this.getPreviousItemIndex(this.#activeItemIndex);
           }
 
           if (customNavigateFunction !== undefined) {
@@ -384,7 +408,7 @@ export default class InfiniteCarousel {
           if (currentButton.classList.contains(this.#activeClassName)) {
             destinationIndex = this.#activeItemIndex;
           } else {
-            destinationIndex = (this.#activeItemIndex + 1) % this.#items.length;
+            destinationIndex = this.getNextItemIndex(this.#activeItemIndex);
           }
 
           if (customNavigateFunction !== undefined) {
@@ -424,7 +448,7 @@ export default class InfiniteCarousel {
 
     // If there are only 2 items, clone all items and append them to the end of the container and items array to create a seamless carousel effect
     if (this.#items.length === 2) {
-      // making sure original items cloned with clean states
+      // making sure original items will be cloned with clean states
       this.clearItemsAndButtonsStates();
 
       const clonedItem1 = this.#items[0].cloneNode(true);
@@ -442,8 +466,8 @@ export default class InfiniteCarousel {
     }
 
     // by this point we are sure that there are at least 3 items in the carousel, so we can safely set next and prev items
-    const nextItemIndex = 1;
-    const prevItemIndex = this.#items.length - 1;
+    const nextItemIndex = this.getNextItemIndex(this.#activeItemIndex);
+    const prevItemIndex = this.getPreviousItemIndex(this.#activeItemIndex);
 
     this.setItemsStates({ nextItemIndex: nextItemIndex, prevItemIndex: prevItemIndex });
   }

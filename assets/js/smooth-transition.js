@@ -39,20 +39,6 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
    */
   const setTransitionFunction = (func) => carouselContainer.style.setProperty("--transition-function", func);
 
-  /**
-   * Get the index of the item that will be transitioned into in the next compound transition
-   * @param {number} currentActiveIndex Currently active item's index
-   * @param {number} itemsCount The total number of items in the carousel
-   * @param {TransitionDirection} direction Direction of the transition chosen
-   * @returns {number}
-   */
-  const getNextIndex = (currentActiveIndex, itemsCount, direction) => {
-    if (direction === "right") {
-      return (currentActiveIndex + 1) % itemsCount;
-    }
-    return (currentActiveIndex - 1 + itemsCount) % itemsCount;
-  };
-
   // set the carousel's default transition duration and function according to configuration
   setTransitionDuration(transitionDuration);
   setTransitionFunction(transitionFunction);
@@ -109,11 +95,11 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
     // combined ease-in, linear, and ease-out functions for smoother experience
     for (let index = 0; index < distance; index++) {
       /** @type {string} */
-      let currentTransitionFunction;
+      let currentTransitionFunction = "";
       /** @type {number} */
-      let currentTransitionDuration;
+      let currentTransitionDuration = 0;
       /** @type {number} */
-      let currentTransitionDelay;
+      let currentTransitionDelay = 0;
       if (index === 0) {
         currentTransitionFunction = "ease-in";
         currentTransitionDuration = easeTransitionDuration;
@@ -127,10 +113,18 @@ export const smoothTransitionFactory = ({ transitionDuration = 300, transitionFu
         currentTransitionDuration = easeTransitionDuration;
         currentTransitionDelay = easeTransitionDuration + (index - 1) * linearTransitionDuration;
       }
+
       setTimeout(() => {
+        let targetIndex = -1;
+        if (transitionDirection === "right") {
+          targetIndex = carousel.getNextItemIndex(carousel.getActiveItemIndex());
+        } else {
+          targetIndex = carousel.getPreviousItemIndex(carousel.getActiveItemIndex());
+        }
+
         setTransitionFunction(currentTransitionFunction);
         setTransitionDuration(currentTransitionDuration);
-        carousel.navigateTo(getNextIndex(carousel.getActiveItemIndex(), itemsCount, transitionDirection));
+        carousel.navigateTo(targetIndex);
       }, currentTransitionDelay);
     }
 
