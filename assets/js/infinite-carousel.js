@@ -271,6 +271,9 @@ export default class InfiniteCarousel {
         targetIndex = this.getNextItemIndex(this.#activeItemIndex);
       } else if (event.deltaX < 0 || (event.deltaY < 0 && event.shiftKey)) {
         targetIndex = this.getPreviousItemIndex(this.#activeItemIndex);
+      } else {
+        // to prevent navigation fires when scrolling vertically while cursor is on the carousel
+        return;
       }
 
       if (customNavigateFunction !== undefined) {
