@@ -74,7 +74,7 @@ body > header {
   padding-inline: 2rem;
   padding-block: 1.75rem;
   backdrop-filter: blur(8px);
-  z-index: 10;
+  z-index: 12;
 }
 
 @media screen and (max-width: 500px) {
@@ -365,6 +365,14 @@ main .card-container > .card-item > p {
   --transition-function: ease-in-out;
   height: calc(var(--item-height) + var(--pagination-height));
   position: relative;
+  overflow-x: clip;
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-container {
+    --item-height: 100vw;
+    --item-width: 80vw;
+  }
 }
 
 .carousel-items {
@@ -441,12 +449,26 @@ main .card-container > .card-item > p {
   padding: 2%;
 }
 
+@media screen and (max-width: 500px) {
+  .carousel-item-text {
+    position: initial;
+    gap: 1rem;
+    padding: 5%;
+  }
+}
+
 .carousel-item-text > h3 {
   font-size: xx-large;
   font-weight: 600;
   line-height: 2rem;
   text-align: left;
   width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-item-text > h3 {
+    font-size: x-large;
+  }
 }
 
 .carousel-item-text > .project-tags {
@@ -465,6 +487,12 @@ main .card-container > .card-item > p {
   border-radius: 0.5rem;
 }
 
+@media screen and (max-width: 500px) {
+  .carousel-item-text > .project-tags > li {
+    font-size: small;
+  }
+}
+
 .carousel-controls {
   position: absolute;
   inset: calc(var(--item-height) / 2) 10% 0 10%;
@@ -473,6 +501,13 @@ main .card-container > .card-item > p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-controls {
+    /* control buttons in mobile display look ugly, might as well hide it */
+    display: none;
+  }
 }
 
 .carousel-control {
