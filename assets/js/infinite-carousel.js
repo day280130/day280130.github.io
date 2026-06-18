@@ -10,6 +10,15 @@ import { getElement, getElements } from "./utils.js";
  */
 
 /**
+ * @callback CustomItemClickFunction
+ * @param {HTMLElement} carouselItem - The carousel item clicked
+ * @param {number} carouselItemIndex - The index of carousel item clicked
+ * @param {Event} clickEvent - The click event
+ * @param {InfiniteCarousel} carousel - The carousel instance for accessing public methods
+ * @returns {void}
+ */
+
+/**
  * @typedef {Object} InfiniteCarouselConfig
  * @property {string} [containerSelector=".carousel"] - CSS selector for the carousel container element. Defaults to ".carousel"
  * @property {string} [itemsContainerSelector=".carousel-items"] - CSS selector for the container holding carousel items. Defaults to ".carousel-items"
@@ -21,6 +30,7 @@ import { getElement, getElements } from "./utils.js";
  * @property {string} [prevButtonSelector] - CSS selector for the previous button (must be child of container). If omitted, previous navigation will be unavailable
  * @property {string} [paginationButtonSelector] - CSS selector for pagination buttons (must be children of container). If omitted, pagination will be unavailable
  * @property {CustomNavigateFunction} [customNavigateFunction] - Optional custom navigation callback. If provided, this function will be called instead of the default navigation
+ * @property {CustomItemClickFunction} [customItemClickFunction] - Optional custom on-click function for carousel item. If provided, this function will be called everytime carousel items are clicked
  */
 
 /**
@@ -78,6 +88,8 @@ export default class InfiniteCarousel {
     }
 
     this.#initiateItems();
+
+    this.#initiateItemsClickListener(config);
   }
 
   /**
@@ -473,5 +485,19 @@ export default class InfiniteCarousel {
     const prevItemIndex = this.getPreviousItemIndex(this.#activeItemIndex);
 
     this.setItemsStates({ nextItemIndex: nextItemIndex, prevItemIndex: prevItemIndex });
+  }
+
+  /**
+   * Attach click event listeners to every carousel items if custom function is provided
+   * @private
+   * @param {InfiniteCarouselConfig} config - Carousel configuration object
+   * @returns {void}
+   */
+  #initiateItemsClickListener({ customItemClickFunction }) {
+    if (customItemClickFunction !== undefined) {
+      this.#items.forEach((item, index) => {
+        item.addEventListener("click", (clickEvent) => customItemClickFunction(item, index, clickEvent, this));
+      });
+    }
   }
 }
