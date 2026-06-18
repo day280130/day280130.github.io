@@ -260,33 +260,14 @@
             </button>
           </div>
           <nav aria-label="Carousel pagination" class="carousel-pagination">
-            <ol class="carousel-page-dots">
+            <template id="carousel-page-dot-template">
               <li>
-                <button aria-label="Go to page 1" aria-current="page" class="carousel-page-dot active">
-                  <span class="sr-only">Page 1</span>
+                <button aria-label="Go to page" class="carousel-page-dot">
+                  <span class="sr-only">Page</span>
                 </button>
               </li>
-              <li>
-                <button aria-label="Go to page 2" class="carousel-page-dot">
-                  <span class="sr-only">Page 2</span>
-                </button>
-              </li>
-              <li>
-                <button aria-label="Go to page 3" class="carousel-page-dot">
-                  <span class="sr-only">Page 3</span>
-                </button>
-              </li>
-              <li>
-                <button aria-label="Go to page 4" class="carousel-page-dot">
-                  <span class="sr-only">Page 4</span>
-                </button>
-              </li>
-              <li>
-                <button aria-label="Go to page 5" class="carousel-page-dot">
-                  <span class="sr-only">Page 5</span>
-                </button>
-              </li>
-            </ol>
+            </template>
+            <ol class="carousel-page-dots"></ol>
           </nav>
         </section>
       </article>

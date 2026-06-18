@@ -1,5 +1,6 @@
 import InfiniteCarousel from "./infinite-carousel.js";
 import { smoothTransitionFactory } from "./smooth-transition.js";
+import { getElement, getElements } from "./utils.js";
 
 // Sidebar
 const sidebar = document.querySelector("aside");
@@ -107,12 +108,43 @@ mql.onchange = () => {
   }
 };
 
-// Project Carousel
+// Carousel
+// generate page buttons for the carousel
+const carouselPages = getElements(".carousel-item", undefined, "carousel items not found");
+
+const carouselPageButtonsContainer = getElement(".carousel-page-dots", undefined, "carousel page buttons container not found");
+
+/** @type {HTMLTemplateElement} */
+const carouselPageButtonTemplate = getElement("#carousel-page-dot-template", undefined, "carousel page button template not found");
+
+carouselPages.forEach((carouselPage, pageIndex) => {
+  /** @type {HTMLLIElement} */
+  const pageButtonListItem = carouselPageButtonTemplate.content.cloneNode(true);
+
+  /** @type {HTMLButtonElement} */
+  const pageButton = getElement(".carousel-page-dot", pageButtonListItem, `carousel page button template for page ${pageIndex} element not found`);
+  const ariaLabel = (pageButton.ariaLabel ?? "") + ` ${pageIndex + 1}`;
+  pageButton.setAttribute("aria-label", ariaLabel);
+  if (pageIndex === 0) {
+    pageButton.ariaCurrent = "page";
+  }
+
+  /** @type {HTMLSpanElement} */
+  const srLabelSpan = getElement(".sr-only", pageButton, `carousel page button template for page ${pageIndex} sr label not found`);
+  const srLabel = srLabelSpan.textContent + ` ${pageIndex + 1}`;
+  srLabelSpan.textContent = srLabel;
+
+  carouselPageButtonsContainer.appendChild(pageButtonListItem);
+});
+
+// generate smooth transition function for the carousel
 const smoothTransition = smoothTransitionFactory({
   containerSelector: ".carousel-container",
   transitionDuration: 300,
   transitionFunction: "ease-in-out",
 });
+
+// register the carousel
 const projectCarousel = new InfiniteCarousel({
   containerSelector: ".carousel-container",
   itemsContainerSelector: ".carousel-items",
