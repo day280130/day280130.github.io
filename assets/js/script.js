@@ -4,31 +4,33 @@ import { getElement, getElements } from "./utils.js";
 
 // Sidebar
 const sidebar = document.querySelector("aside");
-const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
-sidebarToggles.forEach((sidebarToggle) => {
-  // attach sidebar state handler
-  sidebarToggle.addEventListener("click", () => {
-    const currentState = sidebar.dataset.show;
-    const nextState = currentState === "true" ? false : true;
-    sidebar.setAttribute("data-show", nextState);
-  });
-});
-// handle clicking outside aside element
-window.addEventListener("click", (mv) => {
-  const isSidebarOpen = sidebar.dataset.show === "true";
-  const isSidebar = sidebar.contains(mv.target);
-  // omitting sidebar trigger click here since it will be handled by its own click event listener
-  // and not omitting it result in sidebar close immediately after open when clicking the trigger
-  let isSidebarToggle = false;
+if (sidebar !== null) {
+  const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
   sidebarToggles.forEach((sidebarToggle) => {
-    if (sidebarToggle.contains(mv.target)) {
-      isSidebarToggle = true;
+    // attach sidebar state handler
+    sidebarToggle.addEventListener("click", () => {
+      const currentState = sidebar.dataset.show;
+      const nextState = currentState === "true" ? false : true;
+      sidebar.setAttribute("data-show", nextState);
+    });
+  });
+  // handle clicking outside aside element
+  window.addEventListener("click", (mv) => {
+    const isSidebarOpen = sidebar.dataset.show === "true";
+    const isSidebar = sidebar.contains(mv.target);
+    // omitting sidebar trigger click here since it will be handled by its own click event listener
+    // and not omitting it result in sidebar close immediately after open when clicking the trigger
+    let isSidebarToggle = false;
+    sidebarToggles.forEach((sidebarToggle) => {
+      if (sidebarToggle.contains(mv.target)) {
+        isSidebarToggle = true;
+      }
+    });
+    if (isSidebarOpen && !isSidebar && !isSidebarToggle) {
+      sidebar.setAttribute("data-show", false);
     }
   });
-  if (isSidebarOpen && !isSidebar && !isSidebarToggle) {
-    sidebar.setAttribute("data-show", false);
-  }
-});
+}
 
 // Dropdown
 const dropdowns = document.querySelectorAll(".dropdown");
@@ -156,4 +158,8 @@ const projectCarousel = new InfiniteCarousel({
   prevButtonSelector: ".carousel-prev",
   paginationButtonSelector: ".carousel-page-dot",
   customNavigateFunction: smoothTransition,
+  // custom click handler to make carousel item unclickable if not active
+  customItemClickFunction: (_, carouselItemIndex, clickEvent, carousel) => {
+    if (carouselItemIndex !== carousel.getActiveItemIndex()) clickEvent.preventDefault();
+  },
 });

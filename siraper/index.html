@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siraper</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/project-details-style.css" />
+    <script src="../assets/js/script.js" type="module"></script>
+  </head>
+
+  <body data-theme="dark">
+    <header>
+      <nav>
+        <span class="nav-title">
+          <a href="./../#projects">
+            <svg width="24" height="24">
+              <use href="../assets/svg/chevron-left.svg"></use>
+            </svg>
+          </a>
+          <h1>Siraper Project Details</h1>
+        </span>
+      </nav>
+      <div class="theme-switcher dropdown" data-open="false">
+        <button type="button" class="dropdown-trigger">
+          <svg width="24" height="24">
+            <use href="../assets/svg/palette.svg"></use>
+          </svg>
+        </button>
+        <div class="dropdown-container prevent-animation">
+          <button type="button" class="dropdown-item theme-light">
+            <svg width="24" height="24">
+              <use href="../assets/svg/sun.svg"></use>
+            </svg>
+            Light
+          </button>
+          <button type="button" class="dropdown-item theme-dark">
+            <svg width="24" height="24">
+              <use href="../assets/svg/moon.svg"></use>
+            </svg>
+            Dark
+          </button>
+          <button type="button" class="dropdown-item theme-system">
+            <svg width="24" height="24">
+              <use href="../assets/svg/laptop.svg"></use>
+            </svg>
+            System
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <article id="ui-showcase">
+        <h2 class="sr-only">UI Showcase</h2>
+        <section aria-label="UI showcase carousel" class="carousel-container">
+          <ol aria-label="Carousel items" class="carousel-items" style="--shadow: 54 100% 50%">
+            <li aria-current="page" class="carousel-item active">
+              <img src="../assets/img/projects/siraper/login.png" alt="login" />
+              <div class="carousel-item-text">
+                <h3>Login Screen</h3>
+              </div>
+            </li>
+            <li class="carousel-item next">
+              <img src="../assets/img/projects/siraper/dashboard.png" alt="dashboard" />
+              <div class="carousel-item-text">
+                <h3>Dashboard</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/criteria-list.png" alt="criteria list" />
+              <div class="carousel-item-text">
+                <h3>Criteria List</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/criteria-details.jpeg" alt="criteria details" />
+              <div class="carousel-item-text">
+                <h3>Criteria Details</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/criteria-add.jpeg" alt="criteria add" />
+              <div class="carousel-item-text">
+                <h3>Add Criteria</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/criteria-edit.jpeg" alt="criteria edit" />
+              <div class="carousel-item-text">
+                <h3>Edit Criteria</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/customer-list.png" alt="customer list" />
+              <div class="carousel-item-text">
+                <h3>Customer List</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/customer-details.png" alt="customer details" />
+              <div class="carousel-item-text">
+                <h3>Customer Details</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/customer-add.png" alt="customer add" />
+              <div class="carousel-item-text">
+                <h3>Add Customer</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/customer-edit.png" alt="customer edit" />
+              <div class="carousel-item-text">
+                <h3>Edit Customer</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/import-data.png" alt="import data" />
+              <div class="carousel-item-text">
+                <h3>Import Data</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/import-data-filled.png" alt="import data filled" />
+              <div class="carousel-item-text">
+                <h3>Import Data (Imported)</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/admin-list.png" alt="admin list" />
+              <div class="carousel-item-text">
+                <h3>Admin List</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/admin-add.png" alt="admin add" />
+              <div class="carousel-item-text">
+                <h3>Add Admin</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/profile-edit.png" alt="profile edit" />
+              <div class="carousel-item-text">
+                <h3>Profile Settings</h3>
+              </div>
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/img/projects/siraper/logout.png" alt="logout button" />
+              <div class="carousel-item-text">
+                <h3>Logout & Profile Menu</h3>
+              </div>
+            </li>
+          </ol>
+          <div aria-label="Carousel controls" class="carousel-controls">
+            <button aria-label="Previous page" class="carousel-control carousel-prev">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-left.svg"></use>
+              </svg>
+            </button>
+            <button aria-label="Next page" class="carousel-control carousel-next">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-right.svg"></use>
+              </svg>
+            </button>
+          </div>
+          <nav aria-label="Carousel pagination" class="carousel-pagination">
+            <template id="carousel-page-dot-template">
+              <li>
+                <button aria-label="Go to page" class="carousel-page-dot">
+                  <span class="sr-only">Page</span>
+                </button>
+              </li>
+            </template>
+            <ol class="carousel-page-dots"></ol>
+          </nav>
+        </section>
+      </article>
+
+      <article id="techstack">
+        <h2 class="sr-only">Techstack</h2>
+        <ul class="project-tags">
+          <li>Typescript</li>
+          <li>SQL</li>
+          <li>ExpressJS</li>
+          <li>React</li>
+          <li>Tailwind</li>
+          <li>Tanstack</li>
+          <li>NodeJS</li>
+          <li>MySQL</li>
+        </ul>
+      </article>
+
+      <article id="description">
+        <h2 class="sr-only">Description</h2>
+        <p>
+          Best Customer Recommendation System (Sistem Rekomendasi Pelanggan Terbaik / Siraper) is a web-based application developed to rank customers according to business-defined
+          criteria. The system can be utilized for various purposes, including customer interest segmentation and the identification of customers who qualify for specific bonuses,
+          incentives, or other benefits.
+        </p>
+        <p>
+          This application is a Decision Support System (DSS) that implements the Simple Multi-Attribute Rating Technique Exploiting Ranks (SMARTER) method using TypeScript. Its
+          key features include a dashboard for monitoring current customer rankings, ranking customers according to specified criteria within a defined period, managing and
+          configuring the criteria used in the evaluation process, and maintaining customer data.
+        </p>
+      </article>
+
+      <article id="external-links">
+        <a href="https://github.com/day280130/siraper" target="_blank">
+          Repository
+          <svg width="24" height="24">
+            <use href="../assets/svg/external-link.svg"></use>
+          </svg>
+        </a>
+      </article>
+    </main>
+
+    <footer>
+      <h3>DAY Software Solution&trade;</h3>
+      <p>Always Aiming for Perfection.</p>
+      <p>
+        Pictures from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.freepik.com">Freepik</a>, and
+        <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel Perfect</a>
+        <br />
+        Icons by <a href="https://lucide.dev/">Lucide Icon Community</a>.
+      </p>
+    </footer>
+  </body>
+</html>
