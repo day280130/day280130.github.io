@@ -260,14 +260,14 @@ main > article > *:not(:last-child) {
 
 /* main hero article */
 
-main > article:first-child {
+main > article:has(> .hero-container) {
   display: flex;
   background-image: url(/assets/img/background.jpg);
   background-size: contain;
   background-position: top right;
 }
 
-main > article:first-child > .hero-container {
+main > article > .hero-container {
   position: relative;
   flex: 1;
   margin-top: 10vh;
@@ -276,7 +276,7 @@ main > article:first-child > .hero-container {
   border-radius: 25px 25px 0 0;
 }
 
-main > article:first-child .profile-img {
+main > article > .hero-container > .profile-img {
   position: absolute;
   max-height: 40vh;
   top: -20vh;
@@ -360,10 +360,8 @@ main .card-container > .card-item > p {
 .carousel-container {
   --item-height: 33.3vw;
   --item-width: 59.2vw;
-  --pagination-height: 2rem;
   --transition-duration: 0.3s;
   --transition-function: ease-in-out;
-  height: calc(var(--item-height) + var(--pagination-height));
   position: relative;
   overflow-x: clip;
 }
@@ -546,17 +544,16 @@ main .card-container > .card-item > p {
 }
 
 .carousel-pagination {
-  height: var(--pagination-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 1rem 1rem 0;
 }
 
 .carousel-page-dots {
-  width: min-content;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
 }
 
 .carousel-page-dot {
@@ -569,10 +566,23 @@ main .card-container > .card-item > p {
     box-shadow var(--transition-duration) var(--transition-function);
 }
 
-.carousel-page-dot:hover,
-.carousel-page-dot:active {
-  background-color: hsl(var(--foreground) / 0.7);
-  box-shadow: 0 0 5px 2px hsl(var(--foreground) / 0.5);
+@media screen and (max-width: 500px) {
+  .carousel-page-dots {
+    gap: 0.25rem 0.5rem;
+  }
+
+  .carousel-page-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+}
+
+/* fixes lingering hover style after swiping/clicking other things in mobile */
+@media (hover: hover) {
+  .carousel-page-dot:hover {
+    background-color: hsl(var(--foreground) / 0.7);
+    box-shadow: 0 0 5px 2px hsl(var(--foreground) / 0.5);
+  }
 }
 
 .carousel-page-dot.active {
