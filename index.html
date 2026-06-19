@@ -10,10 +10,12 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Initiating theme html body avoids flashing caused by theme syncing after html body has been parsed and shown to the user -->
+    <script src="./assets/js/theme-initiator.js"></script>
     <script src="./assets/js/script.js" type="module"></script>
   </head>
 
-  <body data-theme="dark">
+  <body>
     <header>
       <nav>
         <a href="#" class="root-link">Developer Portfolio</a>

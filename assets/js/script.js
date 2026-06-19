@@ -61,54 +61,42 @@ dropdowns.forEach((dropdown) => {
 });
 
 // Theme Switcher
-// get initial browser theme setting
-const mql = window.matchMedia("(prefers-color-scheme: dark)");
-const initialSystemTheme = mql.matches ? "dark" : "light";
-// get theme state if already saved before
-const initialTheme = localStorage.getItem("theme");
-// set initial theme state
-const body = document.querySelector("body");
-if (initialTheme === "dark") {
-  body.setAttribute("data-theme", "dark");
-} else if (initialTheme === "light") {
-  body.setAttribute("data-theme", "light");
-} else {
-  if (initialSystemTheme === "dark") {
-    body.setAttribute("data-theme", "dark");
-  } else {
-    body.setAttribute("data-theme", "light");
-  }
-}
+// browser theme preference watcher
+const preferDarkMql = window.matchMedia("(prefers-color-scheme: dark)");
+
 // theme state dispatchers
 const setThemeDark = () => {
   localStorage.setItem("theme", "dark");
-  body.setAttribute("data-theme", "dark");
+  document.documentElement.setAttribute("data-theme", "dark");
 };
-document.querySelector("button.theme-dark").addEventListener("click", setThemeDark);
 const setThemeLight = () => {
   localStorage.setItem("theme", "light");
-  body.setAttribute("data-theme", "light");
+  document.documentElement.setAttribute("data-theme", "light");
 };
-document.querySelector("button.theme-light").addEventListener("click", setThemeLight);
 const setThemeSystem = () => {
   localStorage.setItem("theme", "system");
-  if (mql.matches) {
-    body.setAttribute("data-theme", "dark");
+  if (preferDarkMql.matches) {
+    document.documentElement.setAttribute("data-theme", "dark");
   } else {
-    body.setAttribute("data-theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
   }
 };
-document.querySelector("button.theme-system").addEventListener("click", setThemeSystem);
-// handle theme state switching via browser setting
-mql.onchange = () => {
-  // ignore if page theme not following browser/os theme
+
+// attach state dispatcher to theme setting buttons
+getElement("button.theme-dark", undefined, "dark theme button not found").addEventListener("click", setThemeDark);
+getElement("button.theme-light", undefined, "light theme button not found").addEventListener("click", setThemeLight);
+getElement("button.theme-system", undefined, "system theme button not found").addEventListener("click", setThemeSystem);
+
+// handle browser theme preference changes
+preferDarkMql.addEventListener("change", () => {
+  // ignore if page theme not following browser/os theme preference
   if (localStorage.getItem("theme") !== "system") return;
-  if (mql.matches) {
-    body.setAttribute("data-theme", "dark");
+  if (preferDarkMql.matches) {
+    document.documentElement.setAttribute("data-theme", "dark");
   } else {
-    body.setAttribute("data-theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
   }
-};
+});
 
 // Carousel
 // generate page buttons for the carousel
