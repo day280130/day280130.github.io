@@ -50,6 +50,10 @@ main > article > p {
   text-align: justify;
 }
 
+main > article > p > a {
+  text-decoration: underline;
+}
+
 #external-links {
   display: flex;
   justify-content: space-around;
@@ -58,7 +62,8 @@ main > article > p {
 #external-links > a {
   /* shape */
   border-radius: 10px;
-  width: min-content;
+  width: max-content;
+  height: max-content;
 
   /* color */
   background-color: hsl(var(--foreground));
