@@ -56,6 +56,7 @@ main > article > p > a {
 
 #external-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
