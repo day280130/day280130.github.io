@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lifebeam (Backend)</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/project-details-style.css" />
+    <script src="../assets/js/theme-initiator.js"></script>
+    <script src="../assets/js/script.js" type="module"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <span class="nav-title">
+          <a href="./../#projects">
+            <svg width="24" height="24">
+              <use href="../assets/svg/chevron-left.svg"></use>
+            </svg>
+          </a>
+          <h1>Lifebeam (Backend) Project Details</h1>
+        </span>
+      </nav>
+      <div class="theme-switcher dropdown" data-open="false">
+        <button type="button" class="dropdown-trigger">
+          <svg width="24" height="24">
+            <use href="../assets/svg/palette.svg"></use>
+          </svg>
+        </button>
+        <div class="dropdown-container prevent-animation">
+          <button type="button" class="dropdown-item theme-light">
+            <svg width="24" height="24">
+              <use href="../assets/svg/sun.svg"></use>
+            </svg>
+            Light
+          </button>
+          <button type="button" class="dropdown-item theme-dark">
+            <svg width="24" height="24">
+              <use href="../assets/svg/moon.svg"></use>
+            </svg>
+            Dark
+          </button>
+          <button type="button" class="dropdown-item theme-system">
+            <svg width="24" height="24">
+              <use href="../assets/svg/laptop.svg"></use>
+            </svg>
+            System
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <article id="ui-showcase">
+        <h2 class="sr-only">UI Showcase</h2>
+        <section aria-label="UI showcase carousel" class="carousel-container">
+          <ol aria-label="Carousel items" class="carousel-items" style="--shadow: 0 100% 62%">
+            <li aria-current="page" class="carousel-item active">
+              <img src="../assets/img/projects/lifebeam-backend.png" alt="lifebeam backend" />
+              <div class="carousel-item-text">
+                <h3>Backend Architecture</h3>
+              </div>
+            </li>
+          </ol>
+          <div aria-label="Carousel controls" class="carousel-controls">
+            <button aria-label="Previous page" class="carousel-control carousel-prev">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-left.svg"></use>
+              </svg>
+            </button>
+            <button aria-label="Next page" class="carousel-control carousel-next">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-right.svg"></use>
+              </svg>
+            </button>
+          </div>
+          <nav aria-label="Carousel pagination" class="carousel-pagination">
+            <template id="carousel-page-dot-template">
+              <li>
+                <button aria-label="Go to page" class="carousel-page-dot">
+                  <span class="sr-only">Page</span>
+                </button>
+              </li>
+            </template>
+            <ol class="carousel-page-dots"></ol>
+          </nav>
+        </section>
+      </article>
+
+      <article id="techstack">
+        <h2 class="sr-only">Techstack</h2>
+        <ul class="project-tags">
+          <li>Typescript</li>
+          <li>ExpressJS</li>
+          <li>Prisma</li>
+          <li>NodeJS</li>
+          <li>MySQL</li>
+          <li>Firebase OAuth</li>
+        </ul>
+      </article>
+
+      <article id="description">
+        <h2 class="sr-only">Description</h2>
+        <p>
+          Lifebeam is a mobile application designed to track daily exercise activities and calorie intake while predicting the long-term health impact of a user's lifestyle,
+          including the likelihood of achieving a healthy weight, becoming underweight, or becoming overweight. The application utilizes artificial intelligence and machine
+          learning models trained on multiple datasets to deliver accurate and reliable predictions.
+        </p>
+        <p>
+          This project was developed as a group capstone project for the Bangkit Academy program. As a participant in the Cloud Computing learning path, I collaborated with another
+          Cloud Computing cohort to build the backend infrastructure responsible for authentication and authorization services, as well as integration between the machine learning
+          model deployed on Google Cloud and the user-facing mobile application.
+        </p>
+      </article>
+
+      <article id="external-links">
+        <a href="https://github.com/day280130/lifebeam-backend" target="_blank">
+          Repository
+          <svg width="24" height="24">
+            <use href="../assets/svg/external-link.svg"></use>
+          </svg>
+        </a>
+      </article>
+    </main>
+
+    <footer>
+      <h3>DAY Software Solution&trade;</h3>
+      <p>Always Aiming for Perfection.</p>
+      <p>
+        Pictures from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.freepik.com">Freepik</a>, and
+        <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel Perfect</a>
+        <br />
+        Icons by <a href="https://lucide.dev/">Lucide Icon Community</a>.
+      </p>
+    </footer>
+  </body>
+</html>

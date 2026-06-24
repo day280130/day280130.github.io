@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wibuletin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/project-details-style.css" />
+    <script src="../assets/js/theme-initiator.js"></script>
+    <script src="../assets/js/script.js" type="module"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <span class="nav-title">
+          <a href="./../#projects">
+            <svg width="24" height="24">
+              <use href="../assets/svg/chevron-left.svg"></use>
+            </svg>
+          </a>
+          <h1>Wibuletin Project Details</h1>
+        </span>
+      </nav>
+      <div class="theme-switcher dropdown" data-open="false">
+        <button type="button" class="dropdown-trigger">
+          <svg width="24" height="24">
+            <use href="../assets/svg/palette.svg"></use>
+          </svg>
+        </button>
+        <div class="dropdown-container prevent-animation">
+          <button type="button" class="dropdown-item theme-light">
+            <svg width="24" height="24">
+              <use href="../assets/svg/sun.svg"></use>
+            </svg>
+            Light
+          </button>
+          <button type="button" class="dropdown-item theme-dark">
+            <svg width="24" height="24">
+              <use href="../assets/svg/moon.svg"></use>
+            </svg>
+            Dark
+          </button>
+          <button type="button" class="dropdown-item theme-system">
+            <svg width="24" height="24">
+              <use href="../assets/svg/laptop.svg"></use>
+            </svg>
+            System
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <article id="ui-showcase">
+        <h2 class="sr-only">UI Showcase</h2>
+        <section aria-label="UI showcase carousel" class="carousel-container">
+          <ol aria-label="Carousel items" class="carousel-items" style="--shadow: 283 100% 61%">
+            <li aria-current="page" class="carousel-item active">
+              <img src="../assets/img/projects/wibuletin.png" alt="wibuletin" />
+              <div class="carousel-item-text">
+                <h3>User Interface</h3>
+              </div>
+            </li>
+          </ol>
+          <div aria-label="Carousel controls" class="carousel-controls">
+            <button aria-label="Previous page" class="carousel-control carousel-prev">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-left.svg"></use>
+              </svg>
+            </button>
+            <button aria-label="Next page" class="carousel-control carousel-next">
+              <svg width="24" height="24">
+                <use href="../assets/svg/chevron-right.svg"></use>
+              </svg>
+            </button>
+          </div>
+          <nav aria-label="Carousel pagination" class="carousel-pagination">
+            <template id="carousel-page-dot-template">
+              <li>
+                <button aria-label="Go to page" class="carousel-page-dot">
+                  <span class="sr-only">Page</span>
+                </button>
+              </li>
+            </template>
+            <ol class="carousel-page-dots"></ol>
+          </nav>
+        </section>
+      </article>
+
+      <article id="techstack">
+        <h2 class="sr-only">Techstack</h2>
+        <ul class="project-tags">
+          <li>HTML</li>
+          <li>Tailwind</li>
+          <li>AlpineJS</li>
+        </ul>
+      </article>
+
+      <article id="description">
+        <h2 class="sr-only">Description</h2>
+        <p>
+          Wibuletin is a web-based application designed to provide a user-friendly interface for exploring anime information through the <a href="http://jikan.moe">Jikan</a> public
+          API. It features various search and filtering options, including tags, genres, release year, and score-based sorting.
+        </p>
+        <p>
+          This project was inspired by the popular anime database website <a href="https://myanimelist.net/">MyAnimeList</a> and was developed as a personal learning project to
+          gain hands-on experience working with public APIs.
+        </p>
+      </article>
+
+      <article id="external-links">
+        <a href="https://day280130.github.io/wibuletin/" target="_blank">
+          Live Demo
+          <svg width="24" height="24">
+            <use href="../assets/svg/external-link.svg"></use>
+          </svg>
+        </a>
+        <a href="https://github.com/day280130/wibuletin" target="_blank">
+          Repository
+          <svg width="24" height="24">
+            <use href="../assets/svg/external-link.svg"></use>
+          </svg>
+        </a>
+      </article>
+    </main>
+
+    <footer>
+      <h3>DAY Software Solution&trade;</h3>
+      <p>Always Aiming for Perfection.</p>
+      <p>
+        Pictures from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.freepik.com">Freepik</a>, and
+        <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel Perfect</a>
+        <br />
+        Icons by <a href="https://lucide.dev/">Lucide Icon Community</a>.
+      </p>
+    </footer>
+  </body>
+</html>

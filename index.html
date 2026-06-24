@@ -10,142 +10,67 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Initiating theme html body avoids flashing caused by theme syncing after html body has been parsed and shown to the user -->
+    <script src="./assets/js/theme-initiator.js"></script>
+    <script src="./assets/js/script.js" type="module"></script>
   </head>
 
-  <body data-theme="dark">
+  <body>
     <header>
       <nav>
         <a href="#" class="root-link">Developer Portfolio</a>
         <ul class="desktop-nav">
           <li>
-            <a href="#languages">Languages</a>
-          </li>
-          <li>
-            <a href="#frameworks">Frameworks</a>
-          </li>
-          <li>
-            <a href="#tools">Tools</a>
+            <a href="#technologies">Technologies</a>
           </li>
           <li>
             <a href="#projects">Projects</a>
           </li>
+          <li>
+            <a class="sidebar-toggle">Profile</a>
+          </li>
         </ul>
         <div class="mobile-nav dropdown" data-open="false">
           <button type="button" class="dropdown-trigger">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-menu"
-            >
-              <line x1="4" x2="20" y1="12" y2="12" />
-              <line x1="4" x2="20" y1="6" y2="6" />
-              <line x1="4" x2="20" y1="18" y2="18" />
+            <svg width="24" height="24">
+              <use href="./assets/svg/menu.svg"></use>
             </svg>
           </button>
           <ul class="dropdown-container prevent-animation">
             <li class="dropdown-item">
-              <a href="#languages">Languages</a>
-            </li>
-            <li class="dropdown-item">
-              <a href="#frameworks">Frameworks</a>
-            </li>
-            <li class="dropdown-item">
-              <a href="#tools">Tools</a>
+              <a href="#technologies">Technologies</a>
             </li>
             <li class="dropdown-item">
               <a href="#projects">Projects</a>
+            </li>
+            <li class="dropdown-item sidebar-toggle">
+              <a>Profile</a>
             </li>
           </ul>
         </div>
       </nav>
       <div class="theme-switcher dropdown" data-open="false">
         <button type="button" class="dropdown-trigger">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-palette"
-          >
-            <circle cx="13.5" cy="6.5" r=".5" />
-            <circle cx="17.5" cy="10.5" r=".5" />
-            <circle cx="8.5" cy="7.5" r=".5" />
-            <circle cx="6.5" cy="12.5" r=".5" />
-            <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-            />
+          <svg width="24" height="24">
+            <use href="./assets/svg/palette.svg"></use>
           </svg>
         </button>
         <div class="dropdown-container prevent-animation">
-          <button type="button" class="dropdown-item" onclick="setThemeLight()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-sun"
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2" />
-              <path d="M12 20v2" />
-              <path d="m4.93 4.93 1.41 1.41" />
-              <path d="m17.66 17.66 1.41 1.41" />
-              <path d="M2 12h2" />
-              <path d="M20 12h2" />
-              <path d="m6.34 17.66-1.41 1.41" />
-              <path d="m19.07 4.93-1.41 1.41" />
+          <button type="button" class="dropdown-item theme-light">
+            <svg width="24" height="24">
+              <use href="./assets/svg/sun.svg"></use>
             </svg>
             Light
           </button>
-          <button type="button" class="dropdown-item" onclick="setThemeDark()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-moon"
-            >
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          <button type="button" class="dropdown-item theme-dark">
+            <svg width="24" height="24">
+              <use href="./assets/svg/moon.svg"></use>
             </svg>
             Dark
           </button>
-          <button type="button" class="dropdown-item" onclick="setThemeSystem()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-laptop-2"
-            >
-              <rect width="18" height="12" x="3" y="4" rx="2" ry="2" />
-              <line x1="2" x2="22" y1="20" y2="20" />
+          <button type="button" class="dropdown-item theme-system">
+            <svg width="24" height="24">
+              <use href="./assets/svg/laptop.svg"></use>
             </svg>
             System
           </button>
@@ -155,101 +80,88 @@
 
     <main>
       <article>
-        <div class="backdrop"></div>
-        <img src="./assets/img/profile.png" alt="Hero Image" />
-        <h1>Dimas Adnan Yusuf Widyanto</h1>
-        <p>Results-Driven Junior Software Developer | Passionate about Crafting Efficient and Scalable Solutions | Seeking Opportunities to Contribute and Learn</p>
+        <div class="hero-container">
+          <img class="profile-img" src="./assets/img/profile.jpg" alt="Profile Image" />
+          <h1>Dimas Adnan Yusuf Widyanto</h1>
+          <p>Results-Driven Junior Software Developer | Passionate about Crafting Efficient and Scalable Solutions | Seeking Opportunities to Contribute and Learn</p>
+        </div>
       </article>
 
-      <article id="languages">
-        <h2>Programming Languages</h2>
-        <p>These are the programming languages that I'm using to do software developments.</p>
+      <article id="technologies">
+        <h2>Tools & Technologies</h2>
+        <p>These are the tools and technologies that I have used to help me develop and make new applications.</p>
         <div class="card-container">
           <a href="https://www.typescriptlang.org/" target="_blank" style="--shadow: 204 69% 42%" class="card-item">
-            <img src="./assets/img/ts.png" alt="ts icon" />
-            Typescript
+            <img src="./assets/img/logo/ts.png" alt="ts icon" />
+            <p>Typescript</p>
           </a>
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" style="--shadow: 53 100% 55%" class="card-item">
-            <img src="./assets/img/js.png" alt="js icon" />
-            Javascript
+            <img src="./assets/img/logo/js.png" alt="js icon" />
+            <p>Javascript</p>
           </a>
           <a href="https://go.dev/" target="_blank" style="--shadow: 193 96% 43%" class="card-item">
-            <img src="./assets/img/go.png" alt="go icon" />
-            Go
+            <img src="./assets/img/logo/go.png" alt="go icon" />
+            <p>Go</p>
           </a>
           <a href="https://www.php.net/docs.php" target="_blank" style="--shadow: 236 13% 55%" class="card-item">
-            <img src="./assets/img/php.png" alt="php icon" />
-            PHP
+            <img src="./assets/img/logo/php.png" alt="php icon" />
+            <p>PHP</p>
           </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" style="--shadow: 200 100% 55%" class="card-item">
-            <img src="./assets/img/css.png" alt="css icon" />
-            CSS
-          </a>
-          <a href="https://html.com/" target="_blank" style="--shadow: 28 100% 64%" class="card-item">
-            <img src="./assets/img/html.png" alt="html icon" />
-            HTML
-          </a>
-        </div>
-      </article>
-
-      <article id="frameworks">
-        <h2>Libraries & Frameworks</h2>
-        <p>These are the libraries and frameworks that help scaffold my projects.</p>
-        <div class="card-container">
           <a href="https://expressjs.com/" target="_blank" style="--shadow: 360 5% 23%" class="card-item">
-            <img src="./assets/img/express.png" alt="express icon" />
-            ExpressJS
+            <img src="./assets/img/logo/express.png" alt="express icon" />
+            <p>ExpressJS</p>
           </a>
           <a href="https://react.dev/" target="_blank" style="--shadow: 184 100% 50%" class="card-item">
-            <img src="./assets/img/react.png" alt="react icon" />
-            ReactJS
+            <img src="./assets/img/logo/react.png" alt="react icon" />
+            <p>ReactJS</p>
           </a>
           <a href="https://tailwindcss.com/" target="_blank" style="--shadow: 189 100% 45%" class="card-item">
-            <img src="./assets/img/tailwind.png" alt="tailwind icon" />
-            TailwindCSS
+            <img src="./assets/img/logo/tailwind.png" alt="tailwind icon" />
+            <p>TailwindCSS</p>
           </a>
           <a href="https://tanstack.com/" target="_blank" style="--shadow: 25 100% 68%" class="card-item">
-            <img src="./assets/img/tanstack.png" alt="tanstack icon" />
-            Tanstack
+            <img src="./assets/img/logo/tanstack.png" alt="tanstack icon" />
+            <p>Tanstack</p>
           </a>
           <a href="https://nextjs.org/" target="_blank" style="--shadow: 0 0% 0%" class="card-item">
-            <img src="./assets/img/nextjs.png" alt="nextjs icon" />
-            NextJS
+            <img src="./assets/img/logo/nextjs.png" alt="nextjs icon" />
+            <p>NextJS</p>
           </a>
           <a href="https://laravel.com/" target="_blank" style="--shadow: 3 100% 56%" class="card-item">
-            <img src="./assets/img/laravel.png" alt="laravel icon" />
-            Laravel
+            <img src="./assets/img/logo/laravel.png" alt="laravel icon" />
+            <p>Laravel</p>
           </a>
-        </div>
-      </article>
-
-      <article id="tools">
-        <h2>Tools & Technologies</h2>
-        <p>These are the tools and technologies that help me develop and make new applications.</p>
-        <div class="card-container">
           <a href="https://www.mysql.com/" target="_blank" style="--shadow: 196 64% 27%" class="card-item">
-            <img src="./assets/img/mysql.png" alt="mysql icon" />
-            MySQL
+            <img src="./assets/img/logo/mysql.png" alt="mysql icon" />
+            <p>MySQL</p>
           </a>
           <a href="https://www.postgresql.org/" target="_blank" style="--shadow: 207 48% 38%" class="card-item">
-            <img src="./assets/img/postgresql.png" alt="postgresql icon" />
-            PostgreSQL
+            <img src="./assets/img/logo/postgresql.png" alt="postgresql icon" />
+            <p>PostgreSQL</p>
           </a>
           <a href="https://www.mongodb.com/" target="_blank" style="--shadow: 135 75% 50%" class="card-item">
-            <img src="./assets/img/mongodb.png" alt="mongodb icon" />
-            MongoDB
+            <img src="./assets/img/logo/mongodb.png" alt="mongodb icon" />
+            <p>MongoDB</p>
           </a>
           <a href="https://www.docker.com/" target="_blank" style="--shadow: 224 100% 57%" class="card-item">
-            <img src="./assets/img/docker.png" alt="docker icon" />
-            Docker
+            <img src="./assets/img/logo/docker.png" alt="docker icon" />
+            <p>Docker</p>
           </a>
           <a href="https://nodejs.org/en" target="_blank" style="--shadow: 142 86% 29%" class="card-item">
-            <img src="./assets/img/nodejs.png" alt="nodejs icon" />
-            NodeJS
+            <img src="./assets/img/logo/nodejs.png" alt="nodejs icon" />
+            <p>NodeJS</p>
           </a>
           <a href="https://code.visualstudio.com/" target="_blank" style="--shadow: 208 100% 63%" class="card-item">
-            <img src="./assets/img/vscode.png" alt="vscode icon" />
-            Visual Studio Code
+            <img src="./assets/img/logo/vscode.png" alt="vscode icon" />
+            <p>VS Code</p>
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" style="--shadow: 200 100% 55%" class="card-item">
+            <img src="./assets/img/logo/css.png" alt="css icon" />
+            <p>CSS</p>
+          </a>
+          <a href="https://html.com/" target="_blank" style="--shadow: 28 100% 64%" class="card-item">
+            <img src="./assets/img/logo/html.png" alt="html icon" />
+            <p>HTML</p>
           </a>
         </div>
       </article>
@@ -257,52 +169,131 @@
       <article id="projects">
         <h2>Projects</h2>
         <p>These are some of the projects I have worked on.</p>
-        <div class="card-container">
-          <div class="card-item" style="--shadow: 54 100% 50%">
-            <img src="./assets/img/siraper.png" alt="siraper" />
-            <h3>Siraper</h3>
-            <a href="https://github.com/day280130/siraper" target="_blank">repository</a>
+        <section aria-label="Projects carousel" class="carousel-container">
+          <ol aria-label="Carousel items" class="carousel-items">
+            <li aria-current="page" class="carousel-item active" style="--shadow: 54 100% 50%">
+              <a href="/siraper">
+                <img src="./assets/img/projects/siraper/dashboard.png" alt="siraper" />
+                <div class="carousel-item-text">
+                  <h3>Siraper</h3>
+                  <ul class="project-tags">
+                    <li>Typescript</li>
+                    <li>SQL</li>
+                    <li>ExpressJS</li>
+                    <li>React</li>
+                    <li>Tailwind</li>
+                    <li>Tanstack</li>
+                    <li>NodeJS</li>
+                    <li>MySQL</li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+            <li class="carousel-item next" style="--shadow: 0 100% 62%">
+              <a href="/lifebeam">
+                <img src="./assets/img/projects/lifebeam-backend.png" alt="lifebeam backend" />
+                <div class="carousel-item-text">
+                  <h3>Lifebeam (Backend)</h3>
+                  <ul class="project-tags">
+                    <li>Typescript</li>
+                    <li>ExpressJS</li>
+                    <li>Prisma</li>
+                    <li>NodeJS</li>
+                    <li>MySQL</li>
+                    <li>Firebase OAuth</li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+            <li class="carousel-item" style="--shadow: 0 0% 76%">
+              <a href="/siperak">
+                <img src="./assets/img/projects/siperak/Dashboard_Page.png" alt="siperak" />
+                <div class="carousel-item-text">
+                  <h3>Siperak</h3>
+                  <ul class="project-tags">
+                    <li>Typescript</li>
+                    <li>ExpressJS</li>
+                    <li>Prisma</li>
+                    <li>React</li>
+                    <li>Tailwind</li>
+                    <li>NodeJS</li>
+                    <li>MySQL</li>
+                    <li>Memcached</li>
+                    <li>Tauri</li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+            <li class="carousel-item" style="--shadow: 283 100% 61%">
+              <a href="/wibuletin">
+                <img src="./assets/img/projects/wibuletin.png" alt="wibuletin" />
+                <div class="carousel-item-text">
+                  <h3>Wibuletin</h3>
+                  <ul class="project-tags">
+                    <li>HTML</li>
+                    <li>Tailwind</li>
+                    <li>AlpineJS</li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+            <li class="carousel-item prev" style="--shadow: 247 100 35%">
+              <a href="/portfolio">
+                <img src="./assets/img/projects/portfolio/hero-section.png" alt="portfolio" />
+                <div class="carousel-item-text">
+                  <h3>Dev Portfolio</h3>
+                  <ul class="project-tags">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Javascript</li>
+                  </ul>
+                </div>
+              </a>
+            </li>
+          </ol>
+          <div aria-label="Carousel controls" class="carousel-controls">
+            <button aria-label="Previous page" class="carousel-control carousel-prev">
+              <svg width="24" height="24">
+                <use href="./assets/svg/chevron-left.svg"></use>
+              </svg>
+            </button>
+            <button aria-label="Next page" class="carousel-control carousel-next">
+              <svg width="24" height="24">
+                <use href="./assets/svg/chevron-right.svg"></use>
+              </svg>
+            </button>
           </div>
-          <div class="card-item" style="--shadow: 0 100% 62%">
-            <img src="./assets/img/lifebeam-backend.png" alt="lifebeam backend" />
-            <h3>Lifebeam (Backend)</h3>
-            <a href="https://github.com/day280130/lifebeam-backend" target="_blank">repository</a>
-          </div>
-          <div class="card-item" style="--shadow: 0 0% 76%">
-            <img src="./assets/img/siperak.png" alt="siperak" />
-            <h3>Siperak</h3>
-            <a href="https://github.com/day280130/siperak-backend" target="_blank">backend repository</a>
-            <a href="https://github.com/day280130/siperak-frontend" target="_blank">frontend repository</a>
-          </div>
-          <div class="card-item" style="--shadow: 283 100% 61%">
-            <img src="./assets/img/wibuletin.png" alt="wibuletin" />
-            <h3>Wibuletin</h3>
-            <a href="https://day280130.github.io/wibuletin/" target="_blank">site</a>
-            <a href="https://github.com/day280130/wibuletin" target="_blank">repository</a>
-          </div>
-          <div class="card-item" style="--shadow: 247 100 35%">
-            <img src="./assets/img/portfolio.png" alt="portfolio" />
-            <h3>Dev Portfolio</h3>
-            <a href="$" target="_blank">site</a>
-            <a href="https://github.com/day280130/day280130.github.io" target="_blank">repository</a>
-          </div>
-        </div>
+          <nav aria-label="Carousel pagination" class="carousel-pagination">
+            <template id="carousel-page-dot-template">
+              <li>
+                <button aria-label="Go to page" class="carousel-page-dot">
+                  <span class="sr-only">Page</span>
+                </button>
+              </li>
+            </template>
+            <ol class="carousel-page-dots"></ol>
+          </nav>
+        </section>
       </article>
     </main>
 
     <aside data-show="false">
-      <button type="button" class="sidebar-toggle">About Me!</button>
+      <button type="button" class="sidebar-toggle">Profile</button>
       <article>
         <header>
           <h3>Personal Profile</h3>
-          <figure>
-            <img src="./assets/img/myphoto.jpg" alt="Dimas Adnan Yusuf Widyanto" />
-            <figcaption>Dimas Adnan Yusuf Widyanto</figcaption>
-          </figure>
         </header>
         <div class="aside-content">
           <section>
-            <h3>Contact Me</h3>
+            <h3>About Me</h3>
+            <p>
+              A fresh graduate in Informatics from Jenderal Soedirman University with a strong passion for Backend Software Development and Software Infrastructure. Proficient in
+              TypeScript, Node.js, Express.js, and MySQL, with practical experience through various projects. Experience includes leading a team project during the Bangkit Academy
+              capstone program.
+            </p>
+          </section>
+          <section>
+            <h3>Social</h3>
             <table>
               <tbody>
                 <tr>
@@ -315,6 +306,12 @@
                   <th>linkedin</th>
                   <td>
                     <a href="https://linkedin.com/in/dimas-adnan" target="_blank">linkedin.com/in/dimas-adnan</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>github</th>
+                  <td>
+                    <a href="https://github.com/day280130" target="_blank">github.com/day280130</a>
                   </td>
                 </tr>
               </tbody>
@@ -392,12 +389,11 @@
       <h3>DAY Software Solution&trade;</h3>
       <p>Always Aiming for Perfection.</p>
       <p>
-        Pictures from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.flaticon.com/authors/freepik">Freepik</a>, and
+        Pictures from <a href="https://www.pngwing.com/">PNGWing</a>, <a href="https://www.freepik.com">Freepik</a>, and
         <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel Perfect</a>
         <br />
         Icons by <a href="https://lucide.dev/">Lucide Icon Community</a>.
       </p>
     </footer>
-    <script src="./assets/js/script.js"></script>
   </body>
 </html>
